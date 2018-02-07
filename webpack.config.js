@@ -37,3 +37,5 @@ module.exports = env => {
     ]  
   }
 }
+
+/* webpack --env.NODE_ENV=Second --watch --progress */
