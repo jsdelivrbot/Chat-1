@@ -946,7 +946,7 @@ module.exports = focusNode;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(module) {
 
 var _react = __webpack_require__(2);
 
@@ -960,11 +960,40 @@ var _container = __webpack_require__(28);
 
 var _container2 = _interopRequireDefault(_container);
 
+var _input = __webpack_require__(37);
+
+var _input2 = _interopRequireDefault(_input);
+
 __webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_container2.default, null), document.getElementById('root'));
+(function () {
+  var enterModule = __webpack_require__(7).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var value = "horray";
+
+_reactDom2.default.render([_react2.default.createElement(_container2.default, { array: ['wow', 'hehehehe', 'kek', 'lol'] }), _react2.default.createElement(_input2.default, { value: value })], document.getElementById('conversation'));
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(7).default;
+
+  var leaveModule = __webpack_require__(7).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(value, 'value', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/index.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)(module)))
 
 /***/ }),
 /* 16 */
@@ -18282,8 +18311,10 @@ module.exports = camelize;
 /* WEBPACK VAR INJECTION */(function(module) {
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(2);
 
@@ -18292,35 +18323,75 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (function () {
-    var enterModule = __webpack_require__(7).enterModule;
+  var enterModule = __webpack_require__(7).enterModule;
 
-    enterModule && enterModule(module);
+  enterModule && enterModule(module);
 })();
 
-var Container = function Container() {
-    return _react2.default.createElement(
-        'h1',
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Container = function (_Component) {
+  _inherits(Container, _Component);
+
+  function Container(props) {
+    _classCallCheck(this, Container);
+
+    var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this, props));
+
+    _this.list = _this.props.array.map(function (element, index) {
+      return _react2.default.createElement(
+        'li',
+        { key: index },
+        ' ',
+        element,
+        ', ',
+        index,
+        ' '
+      );
+    });
+    return _this;
+  }
+
+  _createClass(Container, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'ul',
         null,
-        'Hello World! tupa'
-    );
-};
+        ' ',
+        this.list
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Container;
+}(_react.Component);
 
 var _default = Container;
 exports.default = _default;
 ;
 
 (function () {
-    var reactHotLoader = __webpack_require__(7).default;
+  var reactHotLoader = __webpack_require__(7).default;
 
-    var leaveModule = __webpack_require__(7).leaveModule;
+  var leaveModule = __webpack_require__(7).leaveModule;
 
-    if (!reactHotLoader) {
-        return;
-    }
+  if (!reactHotLoader) {
+    return;
+  }
 
-    reactHotLoader.register(Container, 'Container', '/home/illidiant/Documents/Chat/App/Second/src/components/container.js');
-    reactHotLoader.register(_default, 'default', '/home/illidiant/Documents/Chat/App/Second/src/components/container.js');
-    leaveModule(module);
+  reactHotLoader.register(Container, 'Container', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/components/container.js');
+  reactHotLoader.register(_default, 'default', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/components/container.js');
+  leaveModule(module);
 })();
 
 ;
@@ -18438,7 +18509,7 @@ exports = module.exports = __webpack_require__(34)(false);
 
 
 // module
-exports.push([module.i, "#root {\n  background-color: #008000;\n}\n", ""]);
+exports.push([module.i, "#conversation {\n  background-color: #808080;\n  width: 50%;\n  margin-left: 25%;\n}\n#conversation div {\n  padding: 10px;\n  display: flex;\n  justify-content: space-around;\n}\n#conversation div button {\n  width: 10%;\n}\n#conversation div input {\n  width: 80%;\n}\n", ""]);
 
 // exports
 
@@ -19001,6 +19072,104 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(7).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Input = function (_Component) {
+  _inherits(Input, _Component);
+
+  function Input(props) {
+    _classCallCheck(this, Input);
+
+    var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, props));
+
+    _this.onChange = _this.onChange.bind(_this);
+    _this.onClick = _this.onClick.bind(_this);
+    _this.state = {
+      message: null
+    };
+    return _this;
+  }
+
+  _createClass(Input, [{
+    key: 'onChange',
+    value: function onChange(e) {
+      this.setState({ message: e.target.value });
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick() {
+      console.log(this.state.message);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('input', { onChange: this.onChange }),
+        _react2.default.createElement('button', { onClick: this.onClick })
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Input;
+}(_react.Component);
+
+var _default = Input;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(7).default;
+
+  var leaveModule = __webpack_require__(7).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Input, 'Input', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/components/input.js');
+  reactHotLoader.register(_default, 'default', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/components/input.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)(module)))
 
 /***/ })
 /******/ ]);

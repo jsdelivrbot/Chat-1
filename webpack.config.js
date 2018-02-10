@@ -3,11 +3,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = env => {
+  const publicPath = '/Dest/' + env.NODE_ENV + '/';
+  
   return {
     entry: './App/' + env.NODE_ENV + '/src/index.js',
-
+    
     output: {
-      path: path.join(__dirname, '/Dest/' + env.NODE_ENV + '/'),
+      path: path.join(__dirname, publicPath),
       filename: '[name].bundle.js'
     },
     
@@ -16,7 +18,7 @@ module.exports = env => {
         {
           test: /\.js|.jsx?$/,
           exclude: /(node_modules)/,
-          loader: "babel-loader"
+          loader: 'babel-loader'
         },
         {
           test: /\.styl$/,
@@ -38,4 +40,4 @@ module.exports = env => {
   }
 }
 
-/* webpack --env.NODE_ENV=Second --watch --progress */
+/* webpack --env.NODE_ENV=Second --watch (--progress) */
