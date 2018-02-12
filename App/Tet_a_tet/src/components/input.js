@@ -1,31 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import add from '../actions/addMessage'
 
 class Input extends Component {
   constructor(props) {
     super(props)
-    this.onChange = this.onChange.bind(this)
-    this.onClick = this.onClick.bind(this)
+    this.update = this.update.bind(this)
+    this.add = this.add.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
     this.state = { 
-      message: null 
+      message: ''
     }
   }
   
-  onChange(e) {
+  update(e) {
     this.setState({ message : e.target.value })
   }
   
-  onClick() {
-    console.log(this.state.message)
+  handleKeyPress(e) {
+    if(e.key == 'Enter') this.add()
+  }
+  
+  add() {
+    if(this.state.message.split(' ').length - 1 !== this.state.message.length) {
+      this.props.dispatch(add(this.state.message))
+      this.setState({ message: '' })
+    }
   }
   
   render() {
     return (
-      <div>
-        <input onChange = { this.onChange }/>
-        <button onClick = { this.onClick }/>
+      <div onKeyPress = { this.handleKeyPress }>
+        <input onChange = { this.update } value = { this.state.message }/>
+        <button onClick = { this.add }/>
       </div>
     )
   }
 }
 
-export default Input
+export default connect()(Input)

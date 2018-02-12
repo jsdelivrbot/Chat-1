@@ -1,17 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Container from './components/container';
-import Input from './components/input';
+import React, { Fragment } from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import Input from './components/input'
+import Container from './components/container'
 import '.././styles/root.styl'
+import dialogReducer from './reducers/conversation'
 
-var value = "horray"
+let store = createStore(dialogReducer)
 
-
-ReactDOM.render(
-  [
-    <Container array =  {['wow', 'hehehehe', 'kek', 'lol']}/>, 
-    <Input value = { value }/>
-  ],
+render(
+  <Provider store = { store }>
+    <Fragment>
+      <Container/>
+      <Input/>
+    </Fragment>
+  </ Provider>,
   document.getElementById('conversation')
-);
+)
 
