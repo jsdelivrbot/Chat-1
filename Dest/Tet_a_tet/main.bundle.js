@@ -1988,13 +1988,20 @@ Object.defineProperty(exports, "__esModule", {
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+var defaultStore = {
+  settings: {},
+  messages: ['Lol', 'Kek', 'Cheburek']
+};
+
 var _default = function _default() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ['frfc', 'cfrcrfc'];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultStore;
   var action = arguments[1];
 
   switch (action.type) {
     case 'ADD_MESSAGE':
-      return [].concat(_toConsumableArray(state), [action.text]);
+      return Object.assign({}, state, {
+        messages: [].concat(_toConsumableArray(state.messages), [action.text])
+      });
     default:
       return state;
   }
@@ -2012,6 +2019,7 @@ exports.default = _default;
     return;
   }
 
+  reactHotLoader.register(defaultStore, 'defaultStore', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/reducers/conversation.js');
   reactHotLoader.register(_default, 'default', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/reducers/conversation.js');
   leaveModule(module);
 })();
@@ -21342,7 +21350,7 @@ var Input = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { onKeyPress: this.handleKeyPress },
+        { onKeyPress: this.handleKeyPress, className: 'textfield' },
         _react2.default.createElement('input', { onChange: this.update, value: this.state.message }),
         _react2.default.createElement('button', { onClick: this.add })
       );
@@ -21454,9 +21462,9 @@ var Container = function (_Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        _react.Fragment,
-        null,
-        this.props.store.map(function (element, index) {
+        'div',
+        { className: 'message-container' },
+        this.props.store.messages.map(function (element, index) {
           return _react2.default.createElement(_message2.default, { key: index, date: '84.34.53 ', name: 'Alex ', message: element });
         })
       );
@@ -21554,7 +21562,7 @@ exports = module.exports = __webpack_require__(77)(false);
 
 
 // module
-exports.push([module.i, "#conversation {\n  background-color: #808080;\n  width: 50%;\n  margin-left: 25%;\n}\n#conversation div {\n  padding: 10px;\n  display: flex;\n  justify-content: space-around;\n}\n#conversation div button {\n  width: 10%;\n}\n#conversation div input {\n  width: 80%;\n}\n", ""]);
+exports.push([module.i, "#settings {\n  background-color: #f00;\n  flex-grow: 1;\n}\n.textfield {\n  background-color: #008000;\n  padding: 10px;\n}\n.textfield button {\n  width: 10%;\n  margin-left: 5%;\n  height: 100%;\n  border-radius: 5px;\n}\n.textfield input {\n  width: 80%;\n  float: left;\n}\n.message-container {\n  padding: 10px;\n  background-color: #fff;\n  flex: -moz-available;\n  overflow-y: auto;\n}\n.message-container > div {\n  background-color: #f3f3f5;\n  margin: 10px;\n}\nhtml,\nbody,\n#main {\n  height: 100%;\n}\n#main {\n  display: flex;\n}\n#conversation {\n  background-color: #808080;\n  flex-grow: 3;\n  display: flex;\n  flex-direction: column;\n}\n", ""]);
 
 // exports
 

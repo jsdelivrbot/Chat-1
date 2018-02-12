@@ -1,7 +1,14 @@
-export default (state = ['frfc', 'cfrcrfc'], action) => {
+let defaultStore = {
+  settings: {},
+  messages: ['Lol', 'Kek', 'Cheburek']
+}
+
+export default (state = defaultStore, action) => {
   switch (action.type) {
     case 'ADD_MESSAGE':
-      return [...state, action.text]
+      return Object.assign({}, state, {
+        messages: [...state.messages, action.text]
+      })
     default:
       return state
   }

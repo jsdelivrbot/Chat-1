@@ -30,7 +30,7 @@ class Input extends Component {
   
   render() {
     return (
-      <div onKeyPress = { this.handleKeyPress }>
+      <div onKeyPress = { this.handleKeyPress } className = 'textfield'>
         <input onChange = { this.update } value = { this.state.message }/>
         <button onClick = { this.add }/>
       </div>
