@@ -21666,6 +21666,10 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(9);
+
+var _actions = __webpack_require__(31);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (function () {
@@ -21713,7 +21717,11 @@ var Gender = function (_Component) {
   }, {
     key: 'handleGender',
     value: function handleGender(e) {
-      if (e.target.name === '0') {} else {}
+      if (e.target.name === '0') {
+        this.props.dispatch((0, _actions.addMyGender)(e.target.value));
+      } else {
+        this.props.dispatch((0, _actions.addStrangersGender)(e.target.value));
+      }
     }
   }, {
     key: 'render',
@@ -21758,7 +21766,8 @@ var Gender = function (_Component) {
   return Gender;
 }(_react.Component);
 
-var _default = Gender;
+var _default = (0, _reactRedux.connect)()(Gender);
+
 exports.default = _default;
 ;
 

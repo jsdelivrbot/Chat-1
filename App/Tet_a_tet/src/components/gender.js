@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addMyGender, addStrangersGender } from '../actions/actions'
 
 class Gender extends Component {
   constructor(props) {
@@ -26,8 +28,10 @@ class Gender extends Component {
   
   handleGender(e) {
     if(e.target.name === '0') {
+      this.props.dispatch(addMyGender(e.target.value))
     }
     else {
+      this.props.dispatch(addStrangersGender(e.target.value))
     }
   }
   
@@ -46,4 +50,4 @@ class Gender extends Component {
   }
 }
 
-export default Gender
+export default connect()(Gender)
