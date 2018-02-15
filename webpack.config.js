@@ -16,13 +16,17 @@ module.exports = env => {
     module: {
       loaders: [
         {
-          test: /\.js|.jsx?$/,
+          test: /\.js$/,
           exclude: /(node_modules)/,
           loader: 'babel-loader'
         },
         {
           test: /\.styl$/,
           loader: ['style-loader', 'css-loader', 'stylus-loader']
+        },
+        {
+          test: /\.css$/,
+          loader: ['style-loader', 'css-loader']
         },
         {
           test: /\.pug$/,

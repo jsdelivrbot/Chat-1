@@ -13,7 +13,6 @@ const simple = (state, action, key) => {
 }
 
 export default (state = defaultStore, action) => {
-  console.log(state)
   switch (action.type) {
     case 'ADD_MESSAGE':
       return Object.assign({}, state, {

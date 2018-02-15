@@ -24,14 +24,15 @@
     "style-loader": "^0.20.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack": "^3.10.0"
   },
   "dependencies": {
     "lodash": "^4.17.5",
+    "rc-slider": "^8.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0-beta.21",
+    "react-intl": "^2.4.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2"
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { addMyGender, addStrangersGender } from '../actions/actions'
 
@@ -37,7 +37,7 @@ class Gender extends Component {
   
   render() {
     return (
-      <div>
+      <Fragment>
         <div> { this.state.before_gender } </div>
         <input onChange = { this.handleGender } type="radio" name = { this.state.name } value='0'/>
         <label> Male </label>
@@ -45,7 +45,7 @@ class Gender extends Component {
         <label> Female </label>
         <input onChange = { this.handleGender } type="radio" name = { this.state.name } value='2' />
         <label> No matter </label> 
-      </div>
+      </Fragment>
     )
   }
 }
