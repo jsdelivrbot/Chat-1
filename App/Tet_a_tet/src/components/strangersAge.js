@@ -11,7 +11,7 @@ class StrangersAge extends Component {
     super(props)
     this.update = this.update.bind(this)
     this.state = {
-      age : [2, 2]
+      age : [2, 3]
     }
     this.props.dispatch(addStrangersAge(this.state.age))
   }
@@ -25,7 +25,7 @@ class StrangersAge extends Component {
     return(
       <Fragment>
         <AgeContainer age = { this.state.age } />
-        <Range min={0} max={5} defaultValue={[2, 2]} onChange = { this.update }/>
+        <Range min={0} max={5} defaultValue={[2, 3]} onChange = { this.update } pushable = { 1 }/>
       </Fragment>
     )
   }

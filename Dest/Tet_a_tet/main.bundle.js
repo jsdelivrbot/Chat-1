@@ -24471,7 +24471,7 @@ var StrangersAge = function (_Component) {
 
     _this.update = _this.update.bind(_this);
     _this.state = {
-      age: [2, 2]
+      age: [2, 3]
     };
     _this.props.dispatch((0, _actions.addStrangersAge)(_this.state.age));
     return _this;
@@ -24490,7 +24490,7 @@ var StrangersAge = function (_Component) {
         _react.Fragment,
         null,
         _react2.default.createElement(_ageContainer2.default, { age: this.state.age }),
-        _react2.default.createElement(Range, { min: 0, max: 5, defaultValue: [2, 2], onChange: this.update })
+        _react2.default.createElement(Range, { min: 0, max: 5, defaultValue: [2, 3], onChange: this.update, pushable: 1 })
       );
     }
   }, {
