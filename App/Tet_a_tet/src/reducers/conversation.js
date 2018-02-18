@@ -1,5 +1,5 @@
 let defaultStore = {
-  settings: { m_a : null, s_a : null, m_g : null, s_g : null },
+  settings: { m_a : 18, s_a : [18, 25], m_g : null, s_g : null },
   messages: ['Lol', 'Kek', 'Cheburek']
 }
 
