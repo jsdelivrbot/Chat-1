@@ -16,7 +16,13 @@ export default (state = defaultStore, action) => {
   switch (action.type) {
     case 'ADD_MESSAGE':
       return Object.assign({}, state, {
-        messages: [...state.messages, action.text]
+        messages: [...state.messages, 
+          { 
+            date: (new Date()).toString().split(' ')[4],
+            name: action.name,
+            message: action.text
+          }
+        ]
       })
       
     case 'ADD_MY_AGE':

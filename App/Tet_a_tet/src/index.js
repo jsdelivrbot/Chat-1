@@ -19,7 +19,7 @@ const socket = io()
 let store = createStore(dialogReducer)
 
 socket.on('sms_from_server', (data) => {
-  store.dispatch(add(data))
+  store.dispatch(add(data, 'Stranger'))
 })
 
 render(

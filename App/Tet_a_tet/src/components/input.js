@@ -23,7 +23,7 @@ class Input extends Component {
   
   add() {
     if(this.state.message.split(' ').length - 1 !== this.state.message.length) {
-      this.props.dispatch(add(this.state.message))
+      this.props.dispatch(add(this.state.message, 'You'))
       this.setState({ message: '' })
       this.props.socket.emit('sms', this.state.message);
     }

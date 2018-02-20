@@ -1,7 +1,8 @@
-export const add = (text) => (
+export const add = (text, name) => (
   {
     type : 'ADD_MESSAGE',
-    text : text
+    text : text,
+    name : name
   }
 )
 
