@@ -1,6 +1,6 @@
 let defaultStore = {
   settings: { m_a : 18, s_a : [18, 25], m_g : null, s_g : null },
-  messages: ['Lol', 'Kek', 'Cheburek']
+  messages: []
 }
 
 const simple = (state, action, key) => {

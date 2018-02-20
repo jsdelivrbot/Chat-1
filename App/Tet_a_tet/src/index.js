@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import { add } from './actions/actions'
 import io from 'socket.io-client'
 import dialogReducer from './reducers/conversation'
 import Input from './components/input'
@@ -13,8 +14,16 @@ import MyAge from './components/myAge'
 import '.././styles/root.styl'
 import 'rc-slider/assets/index.css'
 
+const socket = io()
+
+let store = createStore(dialogReducer)
+
+socket.on('sms_from_server', (data) => {
+  store.dispatch(add(data))
+})
+
 render(
-  <Provider store = { createStore(dialogReducer) }>
+  <Provider store = { store }>
     <Fragment>
     
       <div id = 'settings'>
@@ -30,7 +39,7 @@ render(
       
       <div id = 'conversation'>
         <Container/>
-        <Input/>
+        <Input socket = { socket }/>
       </div>
       
     </Fragment>
@@ -38,4 +47,8 @@ render(
   document.body
 )
 
-const socket = io()
+  
+  
+  
+  
+  
