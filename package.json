@@ -27,6 +27,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
+    "express": "^4.16.2",
     "lodash": "^4.17.5",
     "rc-slider": "^8.6.0",
     "react": "^16.2.0",
@@ -34,6 +35,7 @@
     "react-hot-loader": "^4.0.0-beta.21",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "socket.io": "^2.0.4"
   }
 }

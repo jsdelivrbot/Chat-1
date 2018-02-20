@@ -8,7 +8,7 @@ class Gender extends Component {
     this.handleGender = this.handleGender.bind(this)
     this.state = {
       age: 5
-    }
+    } 
   }
 
   componentDidMount() {
