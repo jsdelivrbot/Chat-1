@@ -10,6 +10,7 @@ import Container from './components/container'
 import Gender from './components/gender'
 import StrangersAge from './components/strangersAge'
 import MyAge from './components/myAge'
+import HideSettings from './components/hideSettings'
 
 import '.././styles/root.styl'
 import 'rc-slider/assets/index.css'
@@ -25,8 +26,7 @@ socket.on('sms_from_server', (data) => {
 render(
   <Provider store = { store }>
     <Fragment>
-    
-      <div id = 'settings'>
+      <div className = 'settings'>
         <div>
           <Gender person = 'ME'/>
           <MyAge/>
@@ -35,13 +35,13 @@ render(
           <Gender/>
           <StrangersAge/>
         </div>
+        <HideSettings/>
       </div>
       
-      <div id = 'conversation'>
+      <div className = 'conversation'>
         <Container/>
         <Input socket = { socket }/>
       </div>
-      
     </Fragment>
   </Provider>,
   document.body

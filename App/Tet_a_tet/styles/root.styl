@@ -9,11 +9,54 @@ html, body
 body
   display flex
 
-#conversation
+.conversation
   background-color gray
   flex-basis 75%
   display flex
   flex-direction column
+  
+@media(max-width: 800px)
+  .settings
+    display none
+    & > button
+      display block
+    
+  .conversation
+    flex-basis -moz-available !important
+    
+  .open-settings
+    display block
+    float left
+    
+  .textfield
+    button
+      width 10%
+      height 100%
+      border-radius 5px
+      margin-left 0
+      
+    button:first-child
+      background-image url('https://www.materialui.co/materialIcons/action/settings_black_144x144.png')
+      background-size 100% 
+
+    input
+      width 70%
+      margin 0 5% 0 5%
+      
+.opened-settings
+  .settings
+    display flex
+    flex-basis 100%
+    flex-direction column
+    & > *
+      margin 30px
+    & > button
+      height 50px
+        
+  .conversation
+    display none
+  
+
 
 
 

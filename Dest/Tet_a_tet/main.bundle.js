@@ -8776,6 +8776,10 @@ var _myAge = __webpack_require__(264);
 
 var _myAge2 = _interopRequireDefault(_myAge);
 
+var _hideSettings = __webpack_require__(270);
+
+var _hideSettings2 = _interopRequireDefault(_hideSettings);
+
 __webpack_require__(265);
 
 __webpack_require__(268);
@@ -8804,7 +8808,7 @@ socket.on('sms_from_server', function (data) {
     null,
     _react2.default.createElement(
       'div',
-      { id: 'settings' },
+      { className: 'settings' },
       _react2.default.createElement(
         'div',
         null,
@@ -8816,11 +8820,12 @@ socket.on('sms_from_server', function (data) {
         null,
         _react2.default.createElement(_gender2.default, null),
         _react2.default.createElement(_strangersAge2.default, null)
-      )
+      ),
+      _react2.default.createElement(_hideSettings2.default, null)
     ),
     _react2.default.createElement(
       'div',
-      { id: 'conversation' },
+      { className: 'conversation' },
       _react2.default.createElement(_container2.default, null),
       _react2.default.createElement(_input2.default, { socket: socket })
     )
@@ -31207,7 +31212,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var defaultStore = {
   settings: { m_a: 18, s_a: [18, 25], m_g: null, s_g: null },
-  messages: []
+  messages: [{ date: 795795, message: 'Hello', name: 'Stranger' }, { date: 432345, message: 'Hello hfjf', name: 'You' }]
 };
 
 var simple = function simple(state, action, key) {
@@ -31244,6 +31249,11 @@ var _default = function _default() {
 
     case 'ADD_STRANGERS_GENDER':
       return simple(state, action, 's_g');
+
+    case 'ADD_CLASS':
+      return Object.assign({}, state, {
+        class: action.class
+      });
 
     default:
       return state;
@@ -31291,6 +31301,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRedux = __webpack_require__(18);
 
 var _actions = __webpack_require__(28);
+
+var _addClass = __webpack_require__(271);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31348,6 +31360,9 @@ var Input = function (_Component) {
       return _react2.default.createElement(
         'div',
         { onKeyPress: this.handleKeyPress, className: 'textfield' },
+        _react2.default.createElement('button', { onClick: function onClick() {
+            return (0, _addClass.addClass)('opened-settings');
+          }, className: 'open-settings' }),
         _react2.default.createElement('input', { onChange: this.update, value: this.state.message }),
         _react2.default.createElement('button', { onClick: this.add })
       );
@@ -38091,7 +38106,7 @@ exports = module.exports = __webpack_require__(118)(false);
 
 
 // module
-exports.push([module.i, "#settings {\n  background-color: #50758d;\n  flex-basis: 25%;\n  min-width: 200px;\n}\n#settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  padding: 10px;\n}\n.textfield button {\n  width: 10%;\n  margin-left: 5%;\n  height: 100%;\n  border-radius: 5px;\n}\n.textfield input {\n  width: 80%;\n  float: left;\n}\n.message-container {\n  background-color: #fff;\n  flex: -moz-available;\n  overflow-y: auto;\n}\n.message-container > div {\n  padding: px;\n  background-color: #f3f3f5;\n  margin: 10px;\n}\n.message-container > div > div {\n  padding: 10px;\n}\n.message-container > div > div:nth-child(1) {\n  float: left;\n}\n.message-container > div > div:nth-child(3) {\n  background-color: #e6e6e6;\n}\n.rc-slider {\n  padding: 30px;\n}\nhtml,\nbody {\n  height: 100%;\n}\nbody {\n  display: flex;\n}\n#conversation {\n  background-color: #808080;\n  flex-basis: 75%;\n  display: flex;\n  flex-direction: column;\n}\n", ""]);
+exports.push([module.i, ".settings {\n  background-color: #50758d;\n  flex-basis: 25%;\n  overflow-y: auto;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n}\n.settings > button {\n  display: none;\n}\n.open-settings {\n  display: none;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  padding: 10px;\n}\n.textfield button {\n  width: 10%;\n  margin-left: 5%;\n  height: 100%;\n  border-radius: 5px;\n}\n.textfield input {\n  width: 80%;\n  float: left;\n}\n.message-container {\n  background-color: #fff;\n  flex: -moz-available;\n  overflow-y: auto;\n}\n.message-container > div {\n  padding: px;\n  background-color: #f3f3f5;\n  margin: 10px;\n}\n.message-container > div > div {\n  padding: 10px;\n}\n.message-container > div > div:nth-child(1) {\n  float: left;\n}\n.message-container > div > div:nth-child(3) {\n  background-color: #e6e6e6;\n}\n.rc-slider {\n  padding: 30px;\n}\nhtml,\nbody {\n  height: 100%;\n}\nbody {\n  display: flex;\n}\n.conversation {\n  background-color: #808080;\n  flex-basis: 75%;\n  display: flex;\n  flex-direction: column;\n}\n@media (max-width: 800px) {\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: -moz-available !important;\n  }\n  .open-settings {\n    display: block;\n    float: left;\n  }\n  .textfield button {\n    width: 10%;\n    height: 100%;\n    border-radius: 5px;\n    margin-left: 0;\n  }\n  .textfield button:first-child {\n    background-image: url(\"https://www.materialui.co/materialIcons/action/settings_black_144x144.png\");\n    background-size: 100%;\n  }\n  .textfield input {\n    width: 70%;\n    margin: 0 5% 0 5%;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > * {\n  margin: 30px;\n}\n.opened-settings .settings > button {\n  height: 50px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -38254,6 +38269,129 @@ exports.push([module.i, ".rc-slider {\n  position: relative;\n  height: 14px;\n 
 
 // exports
 
+
+/***/ }),
+/* 270 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _addClass = __webpack_require__(271);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HideSettings = function (_Component) {
+  _inherits(HideSettings, _Component);
+
+  function HideSettings() {
+    _classCallCheck(this, HideSettings);
+
+    return _possibleConstructorReturn(this, (HideSettings.__proto__ || Object.getPrototypeOf(HideSettings)).apply(this, arguments));
+  }
+
+  _createClass(HideSettings, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        { onClick: function onClick() {
+            return (0, _addClass.addClass)(null);
+          } },
+        ' Hide '
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return HideSettings;
+}(_react.Component);
+
+var _default = HideSettings;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(HideSettings, 'HideSettings', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/components/hideSettings.js');
+  reactHotLoader.register(_default, 'default', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/components/hideSettings.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)(module)))
+
+/***/ }),
+/* 271 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var addClass = exports.addClass = function addClass(className) {
+  var settings = document.getElementsByTagName('body');
+  settings[0].className = className;
+};
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(addClass, 'addClass', '/home/illidiant/Documents/Chat/App/Tet_a_tet/src/addClass.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)(module)))
 
 /***/ })
 /******/ ]);

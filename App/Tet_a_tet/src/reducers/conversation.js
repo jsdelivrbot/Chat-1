@@ -1,6 +1,9 @@
 let defaultStore = {
   settings: { m_a : 18, s_a : [18, 25], m_g : null, s_g : null },
-  messages: []
+  messages: [
+    {date: 795795, message: 'Hello', name: 'Stranger'},
+    {date: 432345, message: 'Hello hfjf', name: 'You'}
+  ]
 }
 
 const simple = (state, action, key) => {
@@ -36,6 +39,11 @@ export default (state = defaultStore, action) => {
       
     case 'ADD_STRANGERS_GENDER':
       return simple(state, action, 's_g')
+    
+    case 'ADD_CLASS':
+      return Object.assign({}, state, {
+        class: action.class
+      })
       
     default:
       return state
