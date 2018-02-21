@@ -44,7 +44,7 @@ render(
       </div>
     </Fragment>
   </Provider>,
-  document.body
+  document.getElementById('app')
 )
 
   
