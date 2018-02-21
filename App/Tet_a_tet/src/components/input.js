@@ -34,7 +34,7 @@ class Input extends Component {
     return (
       <div onKeyPress = { this.handleKeyPress } className = 'textfield'>
         <button onClick = { () => addClass('opened-settings') } className = 'open-settings'/>
-        <input onChange = { this.update } value = { this.state.message }/>
+        <textarea onChange = { this.update } value = { this.state.message }/>
         <button onClick = { this.add }/>
       </div>
     )

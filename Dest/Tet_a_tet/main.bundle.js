@@ -31402,7 +31402,7 @@ var Input = function (_Component) {
         _react2.default.createElement('button', { onClick: function onClick() {
             return (0, _addClass.addClass)('opened-settings');
           }, className: 'open-settings' }),
-        _react2.default.createElement('input', { onChange: this.update, value: this.state.message }),
+        _react2.default.createElement('textarea', { onChange: this.update, value: this.state.message }),
         _react2.default.createElement('button', { onClick: this.add })
       );
     }
@@ -31584,14 +31584,14 @@ var Message = function (_Component) {
           'div',
           null,
           ' ',
-          this.props.date,
+          this.props.message,
           ' '
         ),
         _react2.default.createElement(
           'div',
           null,
           ' ',
-          this.props.message,
+          this.props.date,
           ' '
         )
       );
@@ -38222,7 +38222,7 @@ exports = module.exports = __webpack_require__(119)(false);
 
 
 // module
-exports.push([module.i, ".settings {\n  background-color: #50758d;\n  flex-basis: 25%;\n  overflow-y: auto;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n}\n.settings > button {\n  display: none;\n}\n.open-settings {\n  display: none;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  padding: 10px;\n}\n.textfield button {\n  width: 10%;\n  margin-left: 5%;\n  height: 100%;\n  border-radius: 5px;\n}\n.textfield input {\n  width: 80%;\n  float: left;\n}\n.message-container {\n  background-color: #fff;\n  flex: -moz-available;\n  overflow-y: auto;\n}\n.message-container > div {\n  background-color: #f3f3f5;\n  margin: 10px;\n}\n.message-container > div > div {\n  padding: 10px;\n}\n.rc-slider {\n  padding: 30px;\n}\nhtml,\nbody,\n#app {\n  height: 100%;\n}\n#app {\n  display: flex;\n}\n.conversation {\n  background-color: #808080;\n  flex-basis: 75%;\n  display: flex;\n  flex-direction: column;\n}\n@media (max-width: 800px) {\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100% !important;\n  }\n  .open-settings {\n    display: block;\n    float: left;\n  }\n  .textfield button {\n    margin-left: 0;\n  }\n  .textfield button:first-child {\n    background-image: url(\"https://www.materialui.co/materialIcons/action/settings_black_144x144.png\");\n    background-size: 100%;\n  }\n  .textfield input {\n    width: 70%;\n    margin: 0 5% 0 5%;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > * {\n  margin: 30px;\n}\n.opened-settings .settings > button {\n  height: 50px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
+exports.push([module.i, ".settings {\n  background-color: #50758d;\n  flex-basis: 25%;\n  overflow-y: auto;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n}\n.settings > button {\n  display: none;\n}\n.open-settings {\n  display: none;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  padding: 10px;\n}\n.textfield button {\n  margin-left: 2%;\n  min-width: 40px;\n  height: 100%;\n  border-radius: 5px;\n}\n.textfield textarea {\n  width: 80%;\n  float: left;\n  resize: none;\n  font-size: 15px;\n  line-height: 1.5;\n  letter-spacing: 1px;\n}\n.message-container {\n  background-color: #fff;\n  flex: -moz-available;\n  overflow-y: auto;\n}\n.message-container > div {\n  margin: 20px;\n}\n.message-container > div > div {\n  padding: 10px;\n  font-size: 15px;\n  letter-spacing: 1px;\n  display: inline-flex;\n}\n.message-container > div > div:first-child {\n  background-color: #f3f3f5;\n  border-radius: 10px;\n  max-width: 60%;\n}\n.You > div:first-child {\n  float: right;\n}\n.rc-slider {\n  padding: 30px;\n}\nbody {\n  margin: 0;\n}\nhtml,\nbody,\n#app {\n  height: 100%;\n}\n#app {\n  display: flex;\n}\n.conversation {\n  background-color: #808080;\n  flex-basis: 75%;\n  display: flex;\n  flex-direction: column;\n}\n@media (max-width: 800px) {\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100% !important;\n  }\n  .open-settings {\n    display: block;\n    float: left;\n  }\n  .textfield button {\n    margin-left: 0;\n  }\n  .textfield button:first-child {\n    background-image: url(\"https://www.materialui.co/materialIcons/action/settings_black_144x144.png\");\n    background-size: 100%;\n  }\n  .textfield textarea {\n    width: 70%;\n    margin: 0 5% 0 5%;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > * {\n  margin: 30px;\n}\n.opened-settings .settings > button {\n  height: 50px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
 
 // exports
 
