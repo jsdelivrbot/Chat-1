@@ -16,6 +16,10 @@ html, body, #app
   min-width 0
   
 @media(max-width: 800px)
+  .message-container > div
+    margin-left 10px
+    margin-right 0
+    
   .settings
     display none
     & > button
@@ -29,15 +33,14 @@ html, body, #app
     float left
     
   .textfield
+    display flex
+    justify-content space-evenly
+    
     button
-      margin-left 0
-      
-    button:first-child
-      background-image url('https://www.materialui.co/materialIcons/action/settings_black_144x144.png')
-      background-size 100% 
+      margin 0
 
     textarea
-      width 70%
+      width 60%
       margin 0 5% 0 5%
       
 .opened-settings
