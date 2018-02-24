@@ -2,7 +2,7 @@ let defaultStore = {
   settings: { m_a : 18, s_a : [18, 25], m_g : null, s_g : null },
   messages: [
     {date: 795795, message: 'Hello', name: 'Stranger'},
-    {date: 432345, message: 'Hello hfjf', name: 'You'}
+    {date: '21:03:35', message: 'Hello hfjfStrangerStrangerStrangerStrangerStrangerStrangerStrangerStrangerStrangerStrangerStrangerStrangerStrangerStrangerStranger', name: 'Stranger'}
   ]
 }
 

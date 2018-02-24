@@ -1,24 +1,35 @@
 .message-container
   background-color white
-  flex -moz-available
   overflow-y auto
+  height 100%
   
   & > div
     margin 20px
+    display flex
 
     & > div
       padding 10px
       font-size 15px
       letter-spacing 1px
-      display inline-flex
+      word-wrap break-word
       
     & > div:first-child
       background-color #f3f3f5
       border-radius 10px
       max-width 60%
+      
+    & > div:last-child
+      color #c2c6d2
 
 .You
-  & > div:first-child
-    float right
+  justify-content end
+  & > div:last-child
+    margin-left 2%
+    
+.Stranger
+  & > div:last-child
+    margin-left 2%
   
+  
+
   

@@ -3,9 +3,6 @@
 @import 'message-container'
 @import 'slider'
 
-body
-  margin 0
-  
 html, body, #app
   height 100%
   
@@ -14,9 +11,9 @@ html, body, #app
 
 .conversation
   background-color gray
-  flex-basis 75%
   display flex
   flex-direction column
+  min-width 0
   
 @media(max-width: 800px)
   .settings
