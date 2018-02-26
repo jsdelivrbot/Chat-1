@@ -42,6 +42,7 @@ render(
         <Container/>
         <Input socket = { socket }/>
       </div>
+      
     </Fragment>
   </Provider>,
   document.getElementById('app')

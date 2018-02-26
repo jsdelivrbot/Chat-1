@@ -2,12 +2,18 @@
 @import 'textfield'
 @import 'message-container'
 @import 'slider'
+@import 'navbar'
 
-html, body, #app
+html
+body
+#app
+  margin 0
   height 100%
   
 #app
   display flex
+  & > div
+    height 100%
 
 .conversation
   background-color gray
