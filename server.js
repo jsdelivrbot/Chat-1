@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, '/Dest/Tet_a_tet')))
 
 io.on('connection', function(socket){
   console.log('a user connected')
-  socket.emit('news', 'hey dude')
+  socket.emit('sms_from_server', 'hey dude')
   
   socket.on('sms', function (data) {
     socket.broadcast.emit('sms_from_server', data);

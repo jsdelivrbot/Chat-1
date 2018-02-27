@@ -1,5 +1,5 @@
 let defaultStore = {
-  settings: { m_a : 18, s_a : [18, 25], m_g : null, s_g : null },
+  settings: { m_a : 18, s_a : [18, 25], m_g : null, s_g : null, loop: null },
   messages: []
 }
 
@@ -24,6 +24,9 @@ export default (state = defaultStore, action) => {
           }
         ]
       })
+      
+    case 'LOOP':
+      return simple(state, action, 'loop')
       
     case 'ADD_MY_AGE':
       return simple(state, action, 'm_a')

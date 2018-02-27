@@ -33,3 +33,10 @@ export const addStrangersGender = (text) => (
     value : text
   }
 )
+
+export const loop = (text) => (
+  {
+    type : 'LOOP',
+    value : text
+  }
+)

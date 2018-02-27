@@ -11,6 +11,7 @@ import Gender from './components/gender'
 import StrangersAge from './components/strangersAge'
 import MyAge from './components/myAge'
 import HideSettings from './components/hideSettings'
+import Settings from './components/settings'
 
 import '.././styles/root.styl'
 import 'rc-slider/assets/index.css'
@@ -35,6 +36,7 @@ render(
           <Gender/>
           <StrangersAge/>
         </div>
+        <Settings/>
         <HideSettings/>
       </div>
       
