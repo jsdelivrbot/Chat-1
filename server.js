@@ -4,7 +4,7 @@ var path = require('path')
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
 
-app.use(express.static(path.join(__dirname, '/Dest/Tet_a_tet')))
+app.use(express.static(path.join(__dirname, '/Dest')))
 
 io.on('connection', function(socket){
   console.log('a user connected')
