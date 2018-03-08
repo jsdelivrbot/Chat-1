@@ -27,22 +27,27 @@ socket.on('sms_from_server', (data) => {
 render(
   <Provider store = { store }>
     <Fragment>
-      <div className = 'settings'>
-        <div>
-          <Gender person = 'ME'/>
-          <MyAge/>
-        </div>
-        <div>
-          <Gender/>
-          <StrangersAge/>
-        </div>
-        <Settings/>
+      <div className = 'navbar'>
         <HideSettings/>
       </div>
       
-      <div className = 'conversation'>
-        <Container/>
-        <Input socket = { socket }/>
+      <div className = 'main'>
+        <div className = 'settings'>
+          <div>
+            <Gender person = 'ME'/>
+            <MyAge/>
+          </div>
+          <div>
+            <Gender/>
+            <StrangersAge/>
+          </div>
+          <Settings/>
+        </div>
+        
+        <div className = 'conversation'>
+          <Container/>
+          <Input socket = { socket }/>
+        </div>
       </div>
       
     </Fragment>

@@ -45,6 +45,11 @@ export default (state = defaultStore, action) => {
         class: action.class
       })
       
+    case 'NEW_DIALOG':
+      return Object.assign({}, state, {
+        messages: []
+      })
+      
     default:
       return state
   }

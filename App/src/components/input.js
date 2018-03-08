@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { add } from '../actions/actions'
-import { addClass } from '../addClass'
+import { newDialog } from '../actions/actions'
 
 class Input extends Component {
   constructor(props) {
@@ -9,9 +9,14 @@ class Input extends Component {
     this.update = this.update.bind(this)
     this.add = this.add.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.next = this.next.bind(this)
     this.state = { 
       message: ''
     }
+  }
+  
+  next() {
+    this.props.dispatch(newDialog())
   }
   
   update(e) {
@@ -33,9 +38,9 @@ class Input extends Component {
   render() {
     return (
       <div onKeyPress = { this.handleKeyPress } className = 'textfield'>
-        <button onClick = { () => addClass('opened-settings') } className = 'open-settings'/>
+        <button onClick = { this.next } className = 'next-button'></button>
         <textarea onChange = { this.update } value = { this.state.message }/>
-        <button onClick = { this.add }/>
+        <button onClick = { this.add } className = 'send-button'/>
       </div>
     )
   }

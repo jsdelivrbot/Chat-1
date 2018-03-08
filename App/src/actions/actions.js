@@ -40,3 +40,9 @@ export const loop = (text) => (
     value : text
   }
 )
+
+export const newDialog = () => (
+  {
+    type : 'NEW_DIALOG'
+  }
+)

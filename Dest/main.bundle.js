@@ -797,6 +797,12 @@ var loop = exports.loop = function loop(text) {
     value: text
   };
 };
+
+var newDialog = exports.newDialog = function newDialog() {
+  return {
+    type: 'NEW_DIALOG'
+  };
+};
 ;
 
 (function () {
@@ -814,6 +820,7 @@ var loop = exports.loop = function loop(text) {
   reactHotLoader.register(addStrangersAge, 'addStrangersAge', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
   reactHotLoader.register(addStrangersGender, 'addStrangersGender', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
   reactHotLoader.register(loop, 'loop', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
+  reactHotLoader.register(newDialog, 'newDialog', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
   leaveModule(module);
 })();
 
@@ -8859,27 +8866,35 @@ socket.on('sms_from_server', function (data) {
     null,
     _react2.default.createElement(
       'div',
-      { className: 'settings' },
-      _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_gender2.default, { person: 'ME' }),
-        _react2.default.createElement(_myAge2.default, null)
-      ),
-      _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_gender2.default, null),
-        _react2.default.createElement(_strangersAge2.default, null)
-      ),
-      _react2.default.createElement(_settings2.default, null),
+      { className: 'navbar' },
       _react2.default.createElement(_hideSettings2.default, null)
     ),
     _react2.default.createElement(
       'div',
-      { className: 'conversation' },
-      _react2.default.createElement(_container2.default, null),
-      _react2.default.createElement(_input2.default, { socket: socket })
+      { className: 'main' },
+      _react2.default.createElement(
+        'div',
+        { className: 'settings' },
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_gender2.default, { person: 'ME' }),
+          _react2.default.createElement(_myAge2.default, null)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_gender2.default, null),
+          _react2.default.createElement(_strangersAge2.default, null)
+        ),
+        _react2.default.createElement(_settings2.default, null)
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'conversation' },
+        _react2.default.createElement(_container2.default, null),
+        _react2.default.createElement(_input2.default, { socket: socket })
+      )
     )
   )
 ), document.getElementById('app'));
@@ -31310,6 +31325,11 @@ var _default = function _default() {
         class: action.class
       });
 
+    case 'NEW_DIALOG':
+      return Object.assign({}, state, {
+        messages: []
+      });
+
     default:
       return state;
   }
@@ -31357,8 +31377,6 @@ var _reactRedux = __webpack_require__(13);
 
 var _actions = __webpack_require__(19);
 
-var _addClass = __webpack_require__(97);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (function () {
@@ -31384,6 +31402,7 @@ var Input = function (_Component) {
     _this.update = _this.update.bind(_this);
     _this.add = _this.add.bind(_this);
     _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+    _this.next = _this.next.bind(_this);
     _this.state = {
       message: ''
     };
@@ -31391,6 +31410,11 @@ var Input = function (_Component) {
   }
 
   _createClass(Input, [{
+    key: 'next',
+    value: function next() {
+      this.props.dispatch((0, _actions.newDialog)());
+    }
+  }, {
     key: 'update',
     value: function update(e) {
       this.setState({ message: e.target.value });
@@ -31415,11 +31439,9 @@ var Input = function (_Component) {
       return _react2.default.createElement(
         'div',
         { onKeyPress: this.handleKeyPress, className: 'textfield' },
-        _react2.default.createElement('button', { onClick: function onClick() {
-            return (0, _addClass.addClass)('opened-settings');
-          }, className: 'open-settings' }),
+        _react2.default.createElement('button', { onClick: this.next, className: 'next-button' }),
         _react2.default.createElement('textarea', { onChange: this.update, value: this.state.message }),
-        _react2.default.createElement('button', { onClick: this.add })
+        _react2.default.createElement('button', { onClick: this.add, className: 'send-button' })
       );
     }
   }, {
@@ -38131,20 +38153,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var HideSettings = function (_Component) {
   _inherits(HideSettings, _Component);
 
-  function HideSettings() {
+  function HideSettings(props) {
     _classCallCheck(this, HideSettings);
 
-    return _possibleConstructorReturn(this, (HideSettings.__proto__ || Object.getPrototypeOf(HideSettings)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (HideSettings.__proto__ || Object.getPrototypeOf(HideSettings)).call(this, props));
+
+    _this.state = {
+      switch: false
+    };
+    _this.switch = _this.switch.bind(_this);
+    return _this;
   }
 
   _createClass(HideSettings, [{
+    key: 'switch',
+    value: function _switch() {
+      this.state.switch ? (0, _addClass.addClass)(null) : (0, _addClass.addClass)('opened-settings');
+
+      this.setState(function (prevState) {
+        return {
+          switch: !prevState.switch
+        };
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'button',
-        { onClick: function onClick() {
-            return (0, _addClass.addClass)(null);
-          } },
+        { onClick: this.switch, className: 'open-settings-button' },
         ' Hide '
       );
     }
@@ -38328,7 +38365,7 @@ exports = module.exports = __webpack_require__(119)(false);
 
 
 // module
-exports.push([module.i, ".settings {\n  background-color: #50758d;\n  overflow-y: auto;\n  min-width: 250px;\n  flex-basis: 25%;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n  border-radius: 5px;\n}\n.settings > div > label {\n  display: block;\n}\n.settings > div > input {\n  cursor: pointer;\n  margin-right: 20px;\n  float: left;\n}\n.settings > div > div {\n  font-size: 1em;\n}\n.settings > button {\n  display: none;\n}\n.open-settings {\n  display: none;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  padding: 10px;\n}\n.textfield button {\n  margin-left: 2%;\n  min-width: 40px;\n  height: 100%;\n  border-radius: 5px;\n}\n.textfield textarea {\n  width: 80%;\n  float: left;\n  resize: none;\n  font-size: 15px;\n  line-height: 1.5;\n  letter-spacing: 1px;\n  border-radius: 5px;\n}\n.message-container {\n  background-color: #fff;\n  overflow-y: auto;\n  height: 100%;\n}\n.message-container > div {\n  margin: 20px;\n  display: flex;\n  display: -webkit-flex;\n}\n.message-container > div > div {\n  padding: 10px;\n  font-size: 15px;\n  word-wrap: break-word;\n}\n.message-container > div > div:first-child {\n  background-color: #f3f3f5;\n  border-radius: 10px;\n  max-width: 60%;\n}\n.message-container > div > div:last-child {\n  color: #c2c6d2;\n}\n.You {\n  justify-content: flex-end;\n  -webkit-justify-content: flex-end;\n}\n.You > div:last-child {\n  margin-left: 2%;\n}\n.Stranger > div:last-child {\n  margin-left: 2%;\n}\n.rc-slider {\n  padding: 30px;\n}\n.navbar {\n  background-color: #f00;\n  flex-basis: 100%;\n}\nhtml,\nbody,\n#app {\n  margin: 0;\n  height: 100%;\n}\n#app {\n  display: flex;\n}\n#app > div {\n  height: 100%;\n}\n.conversation {\n  background-color: #808080;\n  display: flex;\n  flex-direction: column;\n  flex-basis: 75%;\n  min-width: 0;\n}\n@media (max-width: 800px) {\n  .message-container > div {\n    margin-left: 10px;\n    margin-right: 0;\n  }\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100% !important;\n  }\n  .open-settings {\n    display: block;\n    float: left;\n  }\n  .textfield {\n    display: flex;\n    justify-content: space-evenly;\n  }\n  .textfield button {\n    margin: 0;\n    padding: 10px;\n  }\n  .textfield textarea {\n    width: 60%;\n    margin: 0 5% 0 5%;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > * {\n  margin: 30px;\n}\n.opened-settings .settings > button {\n  height: 50px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
+exports.push([module.i, ".settings {\n  background-color: #50758d;\n  overflow-y: auto;\n  min-width: 250px;\n  flex-basis: 25%;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n  border-radius: 5px;\n}\n.settings > div > label {\n  display: block;\n}\n.settings > div > input {\n  cursor: pointer;\n  margin-right: 20px;\n  float: left;\n}\n.settings > div > div {\n  font-size: 1em;\n}\n.settings > button {\n  display: none;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  padding: 10px;\n  display: flex;\n  justify-content: space-around;\n}\n.textfield textarea {\n  flex-basis: 70%;\n  resize: none;\n  font-size: 15px;\n  line-height: 1.5;\n  letter-spacing: 1px;\n  border-radius: 5px;\n}\n.textfield .next-button {\n  flex-basis: 8%;\n}\n.textfield .send-button {\n  border-top-right-radius: 10px;\n  border-bottom-right-radius: 10px;\n  flex-basis: 8%;\n}\n.conversation {\n  background-color: #808080;\n  display: flex;\n  flex-direction: column;\n  flex-basis: 75%;\n  min-width: 0;\n}\n.message-container {\n  background-color: #fff;\n  overflow-y: auto;\n  height: 100%;\n}\n.message-container > div {\n  margin: 20px;\n  display: flex;\n}\n.message-container > div > div {\n  padding: 10px;\n  font-size: 15px;\n  word-wrap: break-word;\n}\n.message-container > div > div:first-child {\n  background-color: #f3f3f5;\n  border-radius: 10px;\n  max-width: 60%;\n}\n.message-container > div > div:last-child {\n  color: #c2c6d2;\n}\n.You {\n  justify-content: flex-end;\n  -webkit-justify-content: flex-end;\n}\n.You > div:last-child {\n  margin-left: 2%;\n}\n.Stranger > div:last-child {\n  margin-left: 2%;\n}\n.rc-slider {\n  padding: 30px;\n}\n.navbar {\n  background-color: #50758d;\n  display: flex;\n  height: 10%;\n  justify-content: center;\n}\n.navbar .open-settings-button {\n  margin-top: 10%;\n  flex-basis: 50%;\n  height: 80%;\n  display: none;\n  border-radius: 5px;\n  opacity: 0.7;\n  border-width: 0;\n  font-size: 100%;\n}\nhtml,\nbody,\n#app {\n  margin: 0;\n  height: 100%;\n}\n.main {\n  height: 90%;\n  display: flex;\n}\n@media (max-width: 800px) {\n  .message-container > div {\n    margin-left: 10px;\n    margin-right: 0;\n  }\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100%;\n  }\n  .navbar .open-settings-button {\n    display: block;\n  }\n}\n@media (max-width: 500px) {\n  .textfield {\n    justify-content: space-between;\n  }\n  .textfield textarea {\n    flex-basis: 50%;\n    min-width: 0;\n  }\n  .textfield .next-button {\n    flex-basis: 15%;\n  }\n  .textfield .send-button {\n    flex-basis: 15%;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > * {\n  margin: 30px;\n}\n.opened-settings .settings > button {\n  height: 50px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
 
 // exports
 

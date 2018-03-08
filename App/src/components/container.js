@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Message from './message'
 
 class Container extends Component {
   componentDidUpdate() {
-    this.refs.container.scrollTop = this.refs.container.scrollHeight;
+    this.refs.container.scrollTop = this.refs.container.scrollHeight
   }
   
   render() {

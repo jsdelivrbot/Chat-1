@@ -10,17 +10,9 @@ body
   margin 0
   height 100%
   
-#app
+.main 
+  height 90%
   display flex
-  & > div
-    height 100%
-
-.conversation
-  background-color gray
-  display flex
-  flex-direction column
-  flex-basis 75%
-  min-width 0
   
 @media(max-width: 800px)
   .message-container > div
@@ -33,23 +25,24 @@ body
       display block
     
   .conversation
-    flex-basis 100% !important
-    
-  .open-settings
-    display block
-    float left
-    
+    flex-basis 100%
+  
+  .navbar
+    .open-settings-button
+      display block 
+      
+@media(max-width: 500px)
   .textfield
-    display flex
-    justify-content space-evenly
-    
-    button
-      margin 0
-      padding 10px
-
+    justify-content space-between
     textarea
-      width 60%
-      margin 0 5% 0 5%
+      flex-basis 50%
+      min-width 0
+      
+    .next-button
+      flex-basis 15%
+      
+    .send-button
+      flex-basis 15%
       
 .opened-settings
   .settings
