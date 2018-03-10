@@ -20,7 +20,9 @@ class HideSettings extends Component {
   
   render() {
     return(
-      <button onClick = { this.switch } className = 'open-settings-button'> Hide </button>
+      <i onClick = { this.switch } className = 'open-settings-button material-icons'>
+        { this.state.switch ? 'close' : 'settings' }
+      </i>
     )
   }
 }

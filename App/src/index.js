@@ -28,7 +28,7 @@ render(
   <Provider store = { store }>
     <Fragment>
       <div className = 'navbar'>
-        <img src = './chatlogos/unnamed.png'/>
+        <img src = './chatlogos/unnamed4.png'/>
         <HideSettings/>
       </div>
       
