@@ -10,6 +10,9 @@ body
   margin 0
   height 100%
   
+i
+  cursor pointer
+  
 .main 
   height calc(100% - 80px)
   display flex
@@ -28,28 +31,21 @@ body
     flex-basis 100%
   
   .navbar
-    .open-settings-button
+    i
       display block 
       
 @media(max-width: 450px)
   .textfield
     justify-content space-between
     textarea
-      flex-basis 50%
       min-width 0
-      
-    .next-button
-      flex-basis 15%
-      
-    .send-button
-      flex-basis 15%
-      
+
   .main 
     height calc(100% - 50px)
   
   .navbar
     height 50px
-    .open-settings-button
+    i
       font-size 35px
     
 .opened-settings

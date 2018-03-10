@@ -38,9 +38,9 @@ class Input extends Component {
   render() {
     return (
       <div onKeyPress = { this.handleKeyPress } className = 'textfield'>
-        <button onClick = { this.next } className = 'next-button'></button>
+        <i onClick = { this.next } className = 'material-icons'>skip_next</i>
         <textarea onChange = { this.update } value = { this.state.message }/>
-        <button onClick = { this.add } className = 'send-button'/>
+        <i onClick = { this.add } className = 'material-icons'>send</i>
       </div>
     )
   }
