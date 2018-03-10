@@ -31406,7 +31406,7 @@ var Input = function (_Component) {
           { onClick: this.next, className: 'material-icons' },
           'skip_next'
         ),
-        _react2.default.createElement('textarea', { onChange: this.update, value: this.state.message }),
+        _react2.default.createElement('textarea', { onChange: this.update, value: this.state.message, rows: '3' }),
         _react2.default.createElement(
           'i',
           { onClick: this.add, className: 'material-icons' },

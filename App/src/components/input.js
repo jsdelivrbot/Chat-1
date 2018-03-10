@@ -39,7 +39,7 @@ class Input extends Component {
     return (
       <div onKeyPress = { this.handleKeyPress } className = 'textfield'>
         <i onClick = { this.next } className = 'material-icons'>skip_next</i>
-        <textarea onChange = { this.update } value = { this.state.message }/>
+        <textarea onChange = { this.update } value = { this.state.message } rows = '3'/>
         <i onClick = { this.add } className = 'material-icons'>send</i>
       </div>
     )
