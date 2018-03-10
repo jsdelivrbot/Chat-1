@@ -11,7 +11,7 @@ class HideSettings extends Component {
   }
   
   switch() {
-    this.state.switch ? addClass(null) : addClass('opened-settings')
+    this.state.switch ? addClass('') : addClass('opened-settings')
     
     this.setState((prevState) => ({
       switch: !prevState.switch
