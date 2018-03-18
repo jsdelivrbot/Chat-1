@@ -46,3 +46,9 @@ export const newDialog = () => (
     type : 'NEW_DIALOG'
   }
 )
+
+export const allowSending = () => (
+  {
+    type : 'ALLOW_SENDING'
+  }
+)

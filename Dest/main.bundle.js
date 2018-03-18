@@ -803,6 +803,12 @@ var newDialog = exports.newDialog = function newDialog() {
     type: 'NEW_DIALOG'
   };
 };
+
+var allowSending = exports.allowSending = function allowSending() {
+  return {
+    type: 'ALLOW_SENDING'
+  };
+};
 ;
 
 (function () {
@@ -821,6 +827,7 @@ var newDialog = exports.newDialog = function newDialog() {
   reactHotLoader.register(addStrangersGender, 'addStrangersGender', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
   reactHotLoader.register(loop, 'loop', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
   reactHotLoader.register(newDialog, 'newDialog', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
+  reactHotLoader.register(allowSending, 'allowSending', '/home/illidiant/Documents/Chat/App/src/actions/actions.js');
   leaveModule(module);
 })();
 
@@ -8817,6 +8824,10 @@ var store = (0, _redux.createStore)(_conversation2.default);
 
 socket.on('sms_from_server', function (data) {
   store.dispatch((0, _actions.add)(data, 'Stranger'));
+});
+
+socket.on('server_allows_joining', function () {
+  store.dispatch((0, _actions.allowSending)());
 });
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -31240,8 +31251,9 @@ Object.defineProperty(exports, "__esModule", {
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var defaultStore = {
-  settings: { m_a: 18, s_a: [18, 25], m_g: null, s_g: null, loop: null },
-  messages: []
+  settings: { m_a: 18, s_a: [18, 25], m_g: '2', s_g: '2', loop: null },
+  messages: [],
+  allow_sending: true
 };
 
 var simple = function simple(state, action, key) {
@@ -31257,6 +31269,7 @@ var _default = function _default() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultStore;
   var action = arguments[1];
 
+  console.log(state);
   switch (action.type) {
     case 'ADD_MESSAGE':
       return Object.assign({}, state, {
@@ -31290,6 +31303,11 @@ var _default = function _default() {
     case 'NEW_DIALOG':
       return Object.assign({}, state, {
         messages: []
+      });
+
+    case 'ALLOW_SENDING':
+      return Object.assign({}, state, {
+        allow_sending: !state.allow_sending
       });
 
     default:
@@ -31374,7 +31392,11 @@ var Input = function (_Component) {
   _createClass(Input, [{
     key: 'next',
     value: function next() {
-      this.props.dispatch((0, _actions.newDialog)());
+      if (this.props.store.allow_sending) {
+        this.props.dispatch((0, _actions.newDialog)());
+        this.props.dispatch((0, _actions.allowSending)());
+      }
+      this.props.socket.emit('join_queue', this.props.store.settings);
     }
   }, {
     key: 'update',
@@ -31389,7 +31411,7 @@ var Input = function (_Component) {
   }, {
     key: 'add',
     value: function add() {
-      if (!this.state.message.match(/^\s*$/)) {
+      if (!this.state.message.match(/^\s*$/) && this.props.store.allow_sending) {
         this.props.dispatch((0, _actions.add)(this.state.message, 'You'));
         this.setState({ message: '' });
         this.props.socket.emit('sms', this.state.message);
@@ -31424,7 +31446,9 @@ var Input = function (_Component) {
   return Input;
 }(_react.Component);
 
-var _default = (0, _reactRedux.connect)()(Input);
+var _default = (0, _reactRedux.connect)(function (state) {
+  return { store: state };
+})(Input);
 
 exports.default = _default;
 ;
@@ -31505,7 +31529,14 @@ var Container = function (_Component) {
         { className: 'message-container', ref: 'container' },
         this.props.store.messages.map(function (element, index) {
           return _react2.default.createElement(_message2.default, { key: index, date: element.date, name: element.name, message: element.message });
-        })
+        }),
+        _react2.default.createElement(
+          'div',
+          null,
+          ' ',
+          this.props.store.allow_sending ? null : 'Searching...',
+          ' '
+        )
       );
     }
   }, {
@@ -31679,9 +31710,7 @@ var Gender = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Gender.__proto__ || Object.getPrototypeOf(Gender)).call(this, props));
 
     _this.handleGender = _this.handleGender.bind(_this);
-    _this.state = {
-      age: 5
-    };
+    _this.state = {};
     return _this;
   }
 
@@ -31734,7 +31763,7 @@ var Gender = function (_Component) {
           null,
           ' Female '
         ),
-        _react2.default.createElement('input', { onChange: this.handleGender, type: 'radio', name: this.state.name, value: '2' }),
+        _react2.default.createElement('input', { onChange: this.handleGender, type: 'radio', name: this.state.name, value: '2', defaultChecked: true }),
         _react2.default.createElement(
           'label',
           null,

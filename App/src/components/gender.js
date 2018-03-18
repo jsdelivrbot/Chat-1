@@ -6,9 +6,7 @@ class Gender extends Component {
   constructor(props) {
     super(props)
     this.handleGender = this.handleGender.bind(this)
-    this.state = {
-      age: 5
-    } 
+    this.state = {} 
   }
 
   componentDidMount() {
@@ -43,7 +41,7 @@ class Gender extends Component {
         <label> Male </label>
         <input onChange = { this.handleGender } type="radio" name = { this.state.name } value='1'/>
         <label> Female </label>
-        <input onChange = { this.handleGender } type="radio" name = { this.state.name } value='2' />
+        <input onChange = { this.handleGender } type="radio" name = { this.state.name } value='2' defaultChecked/>
         <label> No matter </label> 
       </Fragment>
     )

@@ -15,6 +15,7 @@ class Container extends Component {
             <Message key = { index } date = { element.date } name = { element.name } message = { element.message } />
           ) 
         } 
+        <div> { this.props.store.allow_sending ? null : 'Searching...' } </div>
       </div>
     )
   }

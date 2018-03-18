@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { add } from './actions/actions'
+import { allowSending } from './actions/actions'
 import io from 'socket.io-client'
 import dialogReducer from './reducers/conversation'
 import Input from './components/input'
@@ -22,6 +23,10 @@ let store = createStore(dialogReducer)
 
 socket.on('sms_from_server', (data) => {
   store.dispatch(add(data, 'Stranger'))
+})
+
+socket.on('server_allows_joining', () => {
+  store.dispatch(allowSending())
 })
 
 render(
@@ -55,9 +60,3 @@ render(
   </Provider>,
   document.getElementById('app')
 )
-
-  
-  
-  
-  
-  

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { add } from '../actions/actions'
 import { newDialog } from '../actions/actions'
+import { allowSending } from '../actions/actions'
 
 class Input extends Component {
   constructor(props) {
@@ -16,7 +17,11 @@ class Input extends Component {
   }
   
   next() {
-    this.props.dispatch(newDialog())
+    if(this.props.store.allow_sending){
+      this.props.dispatch(newDialog())
+      this.props.dispatch(allowSending())
+    }
+    this.props.socket.emit('join_queue', this.props.store.settings)
   }
   
   update(e) {
@@ -28,7 +33,7 @@ class Input extends Component {
   }
   
   add() {
-    if(!this.state.message.match(/^\s*$/)) {
+    if(!this.state.message.match(/^\s*$/) && this.props.store.allow_sending) {
       this.props.dispatch(add(this.state.message, 'You'))
       this.setState({ message: '' })
       this.props.socket.emit('sms', this.state.message);
@@ -46,4 +51,6 @@ class Input extends Component {
   }
 }
 
-export default connect()(Input)
+export default connect(
+  state => ({ store : state })
+)(Input)

@@ -1,6 +1,7 @@
 let defaultStore = {
-  settings: { m_a : 18, s_a : [18, 25], m_g : null, s_g : null, loop: null },
-  messages: []
+  settings: { m_a : 18, s_a : [18, 25], m_g : '2', s_g : '2', loop: null },
+  messages: [],
+  allow_sending: true
 }
 
 const simple = (state, action, key) => {
@@ -13,6 +14,7 @@ const simple = (state, action, key) => {
 }
 
 export default (state = defaultStore, action) => {
+  console.log(state);
   switch (action.type) {
     case 'ADD_MESSAGE':
       return Object.assign({}, state, {
@@ -44,10 +46,15 @@ export default (state = defaultStore, action) => {
       return Object.assign({}, state, {
         class: action.class
       })
-      
+    
     case 'NEW_DIALOG':
       return Object.assign({}, state, {
         messages: []
+      })
+      
+    case 'ALLOW_SENDING':
+      return Object.assign({}, state, {
+        allow_sending: !state.allow_sending
       })
       
     default:

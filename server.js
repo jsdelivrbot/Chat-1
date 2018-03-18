@@ -11,11 +11,15 @@ io.on('connection', function(socket){
   socket.emit('sms_from_server', 'hey dude')
   
   socket.on('sms', function (data) {
-    socket.broadcast.emit('sms_from_server', data);
+    socket.broadcast.emit('sms_from_server', data)
+  })
+  
+  socket.on('join_queue', function (data) {
+    socket.emit('server_allows_joining')
   })
   
 })
 
-http.listen(process.env.PORT || 3000, function(){
-  console.log('listening on *:3000')
+http.listen(process.env.PORT || 8080, function(){
+  console.log('listening on *:8080')
 })
