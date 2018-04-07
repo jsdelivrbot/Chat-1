@@ -1,7 +1,7 @@
 let defaultStore = {
   settings: { m_a : 18, s_a : [18, 25], m_g : '2', s_g : '2', loop: null },
   messages: [],
-  allow_sending: true
+  allow_sending: false
 }
 
 const simple = (state, action, key) => {
