@@ -2,9 +2,13 @@ import React, { Fragment } from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import io from 'socket.io-client'
+
 import { add } from './actions/actions'
 import { allowSending } from './actions/actions'
-import io from 'socket.io-client'
+import { searchStatus } from './actions/actions'
+import { isExited } from './actions/actions'
+
 import dialogReducer from './reducers/conversation'
 import Input from './components/input'
 import Container from './components/container'
@@ -25,7 +29,13 @@ socket.on('sms_from_server', (data) => {
   store.dispatch(add(data, 'Stranger'))
 })
 
-socket.on('server_allows_joining', () => {
+socket.on('sending_control', () => {
+  if(!store.allow_sending) {
+    store.dispatch(searchStatus(false))
+  } else {
+    store.dispatch(isExited())
+  }
+  
   store.dispatch(allowSending())
 })
 

@@ -1,7 +1,10 @@
 let defaultStore = {
   settings: { m_a : 18, s_a : [18, 25], m_g : '2', s_g : '2', loop: null },
   messages: [],
-  allow_sending: false
+  allow_sending: false,
+  search_status: false,
+  is_exited: false,
+  is_used: false
 }
 
 const simple = (state, action, key) => {
@@ -14,7 +17,8 @@ const simple = (state, action, key) => {
 }
 
 export default (state = defaultStore, action) => {
-  console.log(state);
+  console.log(state)
+  
   switch (action.type) {
     case 'ADD_MESSAGE':
       return Object.assign({}, state, {
@@ -56,6 +60,23 @@ export default (state = defaultStore, action) => {
       return Object.assign({}, state, {
         allow_sending: !state.allow_sending
       })
+      
+    case 'SEARCH_STATUS':
+      return Object.assign({}, state, {
+        search_status: action.value
+      })
+    
+    case 'IS_EXITED':
+      return Object.assign({}, state, {
+        is_exited: !state.is_exited
+      })
+      
+    case 'IS_USED':
+      if(!state.is_used){
+        return Object.assign({}, state, {
+          is_used: true
+        })
+      }
       
     default:
       return state

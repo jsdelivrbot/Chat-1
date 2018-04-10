@@ -52,3 +52,22 @@ export const allowSending = () => (
     type : 'ALLOW_SENDING'
   }
 )
+
+export const isExited = () => (
+  {
+    type : 'IS_EXITED'
+  }
+)
+
+export const isUsed = () => (
+  {
+    type : 'IS_USED'
+  }
+)
+
+export const searchStatus = (value) => (
+  {
+    type : 'SEARCH_STATUS',
+    value : value
+  }
+)

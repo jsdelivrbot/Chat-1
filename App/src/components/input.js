@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { add } from '../actions/actions'
 import { newDialog } from '../actions/actions'
 import { allowSending } from '../actions/actions'
+import { isUsed } from '../actions/actions'
+import { searchStatus } from '../actions/actions'
+import { isExited } from '../actions/actions'
 
 class Input extends Component {
   constructor(props) {
@@ -17,10 +20,18 @@ class Input extends Component {
   }
   
   next() {
-    if(this.props.store.allow_sending){
+    this.props.dispatch(isUsed())
+    
+    if(this.props.store.allow_sending) {
       this.props.dispatch(newDialog())
       this.props.dispatch(allowSending())
     }
+    
+    if(this.props.store.is_exited) {
+      this.props.dispatch(isExited())
+    }
+    
+    this.props.dispatch(searchStatus(true))
     this.props.socket.emit('join_queue', this.props.store.settings)
   }
   

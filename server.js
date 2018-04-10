@@ -6,7 +6,8 @@ var express = require('express'),
     
 var stack = {}, 
     connected_users = {}, 
-    mutex = false
+    mutex = false,
+    queue = false
     
 http.listen(process.env.PORT || 8080, () => console.log('listening on *:8080'))
     
@@ -21,10 +22,10 @@ io.on('connection', (socket) => {
     io.sockets.connected[connected_users[socket.id]].emit('sms_from_server', data)
   })
   
-  socket.on('join_queue', async (data) => {
+  socket.on('join_queue', (data) => {
     if(connected_users[socket.id] !== undefined) {
-      io.sockets.connected[connected_users[socket.id]].emit('server_allows_joining')
-      io.sockets.connected[socket.id].emit('server_allows_joining')
+      io.sockets.connected[connected_users[socket.id]].emit('sending_control')
+      io.sockets.connected[socket.id].emit('sending_control')
       delete connected_users[connected_users[socket.id]]
       delete connected_users[socket.id]
     }
@@ -32,16 +33,18 @@ io.on('connection', (socket) => {
     stack[socket.id] = { id: socket.id, ...data }
     console.log('User joining the queue', stack)
     
-    if(!mutex && Object.keys(stack).length > 1) {
-      mutex = true
-      await connect()
-      mutex = false
+    if(Object.keys(stack).length > 1) {
+      if(mutex) {
+        queue = true
+      } else {
+        connect()
+      }
     } 
   })
   
   socket.on('disconnect', () => {
     if(io.sockets.connected[connected_users[socket.id]] !== undefined){
-      io.sockets.connected[connected_users[socket.id]].emit('server_allows_joining')
+      io.sockets.connected[connected_users[socket.id]].emit('sending_control')
       delete connected_users[connected_users[socket.id]]
       delete connected_users[socket.id]
     } else {
@@ -50,7 +53,8 @@ io.on('connection', (socket) => {
   })
 })
 
-const connect = () => new Promise((resolve, reject) => {
+const connect = () => {
+  mutex = true
   let array = [], first, second
   
   for(key in stack) {
@@ -72,8 +76,8 @@ const connect = () => new Promise((resolve, reject) => {
         connected_users[array[i]] = array[j]
         connected_users[array[j]] = array[i]
         
-        io.sockets.connected[array[i]].emit('server_allows_joining')
-        io.sockets.connected[array[j]].emit('server_allows_joining')
+        io.sockets.connected[array[i]].emit('sending_control')
+        io.sockets.connected[array[j]].emit('sending_control')
         
         array.splice(i, 1)
         array.splice(j - 1, 1)
@@ -83,6 +87,4 @@ const connect = () => new Promise((resolve, reject) => {
       }
     }
   }
-  
-  resolve()
-})
+}
