@@ -28,6 +28,7 @@ class Input extends Component {
     }
     
     if(this.props.store.is_exited) {
+      this.props.dispatch(newDialog())
       this.props.dispatch(isExited())
     }
     

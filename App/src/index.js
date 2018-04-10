@@ -30,7 +30,9 @@ socket.on('sms_from_server', (data) => {
 })
 
 socket.on('sending_control', () => {
-  if(!store.allow_sending) {
+  alert('sending SWITCHED!')
+    
+  if(!store.getState().allow_sending) {
     store.dispatch(searchStatus(false))
   } else {
     store.dispatch(isExited())

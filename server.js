@@ -19,7 +19,9 @@ io.on('connection', (socket) => {
   console.log('connected:', socket.id)
   
   socket.on('sms', (data) => {
-    io.sockets.connected[connected_users[socket.id]].emit('sms_from_server', data)
+    if(connected_users[socket.id] !== undefined) {
+      io.sockets.connected[connected_users[socket.id]].emit('sms_from_server', data)
+    }
   })
   
   socket.on('join_queue', (data) => {
@@ -37,13 +39,14 @@ io.on('connection', (socket) => {
       if(mutex) {
         queue = true
       } else {
+        mutex = true
         connect()
       }
     } 
   })
   
   socket.on('disconnect', () => {
-    if(io.sockets.connected[connected_users[socket.id]] !== undefined){
+    if(io.sockets.connected[connected_users[socket.id]] !== undefined) {
       io.sockets.connected[connected_users[socket.id]].emit('sending_control')
       delete connected_users[connected_users[socket.id]]
       delete connected_users[socket.id]
@@ -53,8 +56,7 @@ io.on('connection', (socket) => {
   })
 })
 
-const connect = () => {
-  mutex = true
+const connect = async () => {
   let array = [], first, second
   
   for(key in stack) {
@@ -62,8 +64,6 @@ const connect = () => {
   }
   
   for(let i = 0; i < array.length; i++) {
-    console.log(array)
-    
     first = stack[array[i]]
     
     for(let j = i + 1; j < array.length; j++) {
@@ -76,8 +76,8 @@ const connect = () => {
         connected_users[array[i]] = array[j]
         connected_users[array[j]] = array[i]
         
-        io.sockets.connected[array[i]].emit('sending_control')
-        io.sockets.connected[array[j]].emit('sending_control')
+        await io.sockets.connected[array[i]].emit('sending_control')
+        await io.sockets.connected[array[j]].emit('sending_control')
         
         array.splice(i, 1)
         array.splice(j - 1, 1)
@@ -86,5 +86,12 @@ const connect = () => {
         delete stack[array[j]]
       }
     }
+  }
+  
+  if(queue) {
+    queue = false
+    connect()
+  } else {
+    mutex = false
   }
 }
