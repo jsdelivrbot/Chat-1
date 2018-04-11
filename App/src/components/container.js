@@ -10,9 +10,9 @@ class Container extends Component {
   }
   
   underCaptionControl() {
-    if(this.props.store.is_exited) { 
+    if(this.props.store.is_exited && !this.props.store.search_status) { 
       return (
-        <div className = 'Caption'> Stranger exited. Press |> to find next! </div>
+        <div className = 'Caption'> Stranger exited. Press >| to find next! </div>
       )
     } 
   }
@@ -22,7 +22,7 @@ class Container extends Component {
       return 'Welcome to the chat! Start searching by >|'
     }
     
-    if(this.props.store.allow_sending) { 
+    if(this.props.store.allow_sending || !this.props.store.search_status) { 
       return 'Stranger found! Say hello'
     } 
     

@@ -8849,8 +8849,6 @@ socket.on('sms_from_server', function (data) {
 });
 
 socket.on('sending_control', function () {
-  alert('sending SWITCHED!');
-
   if (!store.getState().allow_sending) {
     store.dispatch((0, _actions.searchStatus)(false));
   } else {
@@ -31583,11 +31581,11 @@ var Container = function (_Component) {
   _createClass(Container, [{
     key: 'underCaptionControl',
     value: function underCaptionControl() {
-      if (this.props.store.is_exited) {
+      if (this.props.store.is_exited && !this.props.store.search_status) {
         return _react2.default.createElement(
           'div',
           { className: 'Caption' },
-          ' Stranger exited. Press |> to find next! '
+          ' Stranger exited. Press >| to find next! '
         );
       }
     }
@@ -31598,7 +31596,7 @@ var Container = function (_Component) {
         return 'Welcome to the chat! Start searching by >|';
       }
 
-      if (this.props.store.allow_sending) {
+      if (this.props.store.allow_sending || !this.props.store.search_status) {
         return 'Stranger found! Say hello';
       }
 

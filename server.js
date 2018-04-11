@@ -15,11 +15,10 @@ http.listen(process.env.PORT || 8080, () => console.log('listening on *:8080'))
 
 app.use(express.static(path.join(__dirname, '/Dest')))
 
-io.on('connection', (socket) => {
-  console.log('connected:', socket.id)
-  
+io.on('connection', (socket) => {  
   socket.on('sms', (data) => {
     if(connected_users[socket.id] !== undefined) {
+      Alert()
       io.sockets.connected[connected_users[socket.id]].emit('sms_from_server', data)
     }
   })
@@ -27,13 +26,11 @@ io.on('connection', (socket) => {
   socket.on('join_queue', (data) => {
     if(connected_users[socket.id] !== undefined) {
       io.sockets.connected[connected_users[socket.id]].emit('sending_control')
-      io.sockets.connected[socket.id].emit('sending_control')
       delete connected_users[connected_users[socket.id]]
       delete connected_users[socket.id]
     }
     
     stack[socket.id] = { id: socket.id, ...data }
-    console.log('User joining the queue', stack)
     
     if(Object.keys(stack).length > 1) {
       if(mutex) {
@@ -43,6 +40,7 @@ io.on('connection', (socket) => {
         connect()
       }
     } 
+    Alert()
   })
   
   socket.on('disconnect', () => {
@@ -53,6 +51,7 @@ io.on('connection', (socket) => {
     } else {
       delete stack[socket.id]  
     }
+    Alert()
   })
 })
 
@@ -79,11 +78,11 @@ const connect = async () => {
         await io.sockets.connected[array[i]].emit('sending_control')
         await io.sockets.connected[array[j]].emit('sending_control')
         
-        array.splice(i, 1)
-        array.splice(j - 1, 1)
-        
         delete stack[array[i]]
         delete stack[array[j]]
+        
+        array.splice(i, 1)
+        array.splice(j - 1, 1)
       }
     }
   }
@@ -94,4 +93,8 @@ const connect = async () => {
   } else {
     mutex = false
   }
+}
+
+const Alert = () => {
+  console.log('Stack:', stack, '\nConnected users:', connected_users)
 }
