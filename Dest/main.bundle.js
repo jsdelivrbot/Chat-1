@@ -31281,9 +31281,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var defaultStore = {
   settings: { m_a: 18, s_a: [18, 25], m_g: '2', s_g: '2', loop: null },
   messages: [],
-  allow_sending: false,
+  allow_sending: true,
   search_status: false,
-  is_exited: false,
+  is_exited: true,
   is_used: false
 };
 
@@ -31300,7 +31300,7 @@ var _default = function _default() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultStore;
   var action = arguments[1];
 
-  console.log('allow_sending:', state.allow_sending, '\nsearch_status:', state.search_status, '\nis_exited:', state.is_exited, '\nis_used:', state.is_used);
+  //console.log('allow_sending:', state.allow_sending, '\nsearch_status:', state.search_status, '\nis_exited:', state.is_exited, '\nis_used:', state.is_used)
 
   switch (action.type) {
     case 'ADD_MESSAGE':
@@ -31573,7 +31573,7 @@ var Container = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this, props));
 
-    _this.captionControl = _this.captionControl.bind(_this);
+    _this.upperCaptionControl = _this.upperCaptionControl.bind(_this);
     _this.underCaptionControl = _this.underCaptionControl.bind(_this);
     return _this;
   }
@@ -31585,15 +31585,25 @@ var Container = function (_Component) {
         return _react2.default.createElement(
           'div',
           { className: 'Caption' },
-          ' Stranger exited. Press >| to find next! '
+          ' Stranger has exited. Press ',
+          _react2.default.createElement(
+            'i',
+            { className: 'material-icons' },
+            'skip_next'
+          ),
+          ' to find next! '
         );
       }
     }
   }, {
-    key: 'captionControl',
-    value: function captionControl() {
+    key: 'upperCaptionControl',
+    value: function upperCaptionControl() {
       if (!this.props.store.is_used) {
-        return 'Welcome to the chat! Start searching by >|';
+        return ['Welcome to the chat! Start searching by', _react2.default.createElement(
+          'i',
+          { className: 'material-icons' },
+          'skip_next'
+        )];
       }
 
       if (this.props.store.allow_sending || !this.props.store.search_status) {
@@ -31606,8 +31616,10 @@ var Container = function (_Component) {
     }
   }, {
     key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      this.refs.container.scrollTop = this.refs.container.scrollHeight;
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.store.messages !== this.props.store.messages || this.props.store.is_exited && !prevProps.store.is_exited) {
+        this.refs.container.scrollTop = this.refs.container.scrollHeight;
+      }
     }
   }, {
     key: 'render',
@@ -31619,7 +31631,7 @@ var Container = function (_Component) {
           'div',
           { className: 'Caption' },
           ' ',
-          this.captionControl(),
+          this.upperCaptionControl(),
           ' '
         ),
         this.props.store.messages.map(function (element, index) {
@@ -38493,7 +38505,7 @@ exports = module.exports = __webpack_require__(118)(false);
 
 
 // module
-exports.push([module.i, ".settings {\n  background-color: #50758d;\n  overflow-y: auto;\n  min-width: 250px;\n  flex-basis: 25%;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n  border-radius: 5px;\n}\n.settings > div:first-child {\n  margin-top: 0;\n}\n.settings > div > label {\n  display: block;\n}\n.settings > div > input {\n  cursor: pointer;\n  margin-right: 20px;\n  float: left;\n}\n.settings > div > div {\n  font-size: 1em;\n}\n.settings > button {\n  display: none;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  display: flex;\n  display: -webkit-flex;\n  justify-content: space-around;\n  padding: 10px;\n  height: 90px;\n}\n.textfield textarea {\n  flex-basis: 80%;\n  line-height: 1.5;\n  resize: none;\n  font-size: 16px;\n  letter-spacing: 1px;\n  border-radius: 5px;\n  height: 70px;\n}\n.textfield i {\n  position: relative;\n  top: 0;\n  margin-top: 0;\n  padding-top: 0;\n  line-height: 115%;\n  font-size: 70px;\n  color: #e6e6e9;\n}\n.textfield i:hover {\n  color: #fff;\n}\n.textfield i:last-child {\n  margin-left: 15px;\n}\n.conversation {\n  background-color: #808080;\n  display: flex;\n  display: -webkit-flex;\n  flex-direction: column;\n  flex-basis: 75%;\n  min-width: 0;\n}\n.message-container {\n  background-color: #fff;\n  overflow-y: auto;\n  height: 100%;\n  background-image: url(" + escape(__webpack_require__(271)) + ");\n}\n.message-container > div {\n  margin: 20px;\n  display: flex;\n}\n.message-container > div > div {\n  padding: 10px;\n  font-size: 15px;\n  word-wrap: break-word;\n}\n.message-container > div > div:first-child {\n  background-color: #f3f3f5;\n  border-radius: 10px;\n  max-width: 60%;\n}\n.message-container > div > div:last-child {\n  color: #c2c6d2;\n}\n.You {\n  justify-content: flex-end;\n  -webkit-justify-content: flex-end;\n}\n.You > div:last-child {\n  margin-left: 2%;\n}\n.Stranger > div:last-child {\n  margin-left: 2%;\n}\n.Caption {\n  background-color: #e6e6e9;\n  color: #50758d;\n  justify-content: center;\n}\n.rc-slider {\n  padding: 30px;\n}\n.navbar {\n  background-color: #50758d;\n  display: flex;\n  display: -webkit-flex;\n  height: 80px;\n  justify-content: space-between;\n}\n.navbar * {\n  position: relative;\n  height: 70%;\n  top: 15%;\n}\n.navbar i {\n  margin-right: 10px;\n  display: none;\n  opacity: 0.7;\n  font-size: 56px;\n  color: #50758d;\n  background-color: #140124;\n  border-radius: 5px;\n}\n.navbar i:active,\n.navbar i:hover {\n  color: #fff;\n}\n.navbar img {\n  width: auto;\n  margin-left: 10px;\n}\nhtml,\nbody,\n#app {\n  margin: 0;\n  height: 100%;\n}\ni {\n  cursor: pointer;\n}\n.main {\n  height: calc(100% - 80px);\n  display: flex;\n  display: -webkit-flex;\n}\n@media (max-width: 800px) {\n  .message-container > div {\n    margin-left: 10px;\n    margin-right: 0;\n  }\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100%;\n  }\n  .navbar i {\n    display: block;\n  }\n}\n@media (max-width: 450px) {\n  .textfield {\n    justify-content: space-between;\n    height: 70px;\n  }\n  .textfield textarea {\n    min-width: 0;\n    height: 50px;\n  }\n  .textfield i {\n    font-size: 50px;\n  }\n  .main {\n    height: calc(100% - 50px);\n  }\n  .navbar {\n    height: 50px;\n  }\n  .navbar i {\n    font-size: 35px;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > div {\n  margin: 30px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
+exports.push([module.i, ".settings {\n  background-color: #50758d;\n  overflow-y: auto;\n  min-width: 250px;\n  flex-basis: 25%;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n  border-radius: 5px;\n}\n.settings > div:first-child {\n  margin-top: 0;\n}\n.settings > div > label {\n  display: block;\n}\n.settings > div > input {\n  cursor: pointer;\n  margin-right: 20px;\n  float: left;\n}\n.settings > div > div {\n  font-size: 1em;\n}\n.settings > button {\n  display: none;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  display: flex;\n  display: -webkit-flex;\n  justify-content: space-around;\n  padding: 10px;\n  height: 90px;\n}\n.textfield textarea {\n  flex-basis: 80%;\n  line-height: 1.5;\n  resize: none;\n  font-size: 16px;\n  letter-spacing: 1px;\n  border-radius: 5px;\n  height: 70px;\n}\n.textfield i {\n  position: relative;\n  top: 0;\n  margin-top: 0;\n  padding-top: 0;\n  line-height: 115%;\n  font-size: 70px;\n  color: #e6e6e9;\n}\n.textfield i:hover {\n  color: #fff;\n}\n.textfield i:last-child {\n  margin-left: 15px;\n}\n.conversation {\n  background-color: #808080;\n  display: flex;\n  display: -webkit-flex;\n  flex-direction: column;\n  flex-basis: 75%;\n  min-width: 0;\n}\n.message-container {\n  background-color: #fff;\n  overflow-y: auto;\n  height: 100%;\n  background-image: url(" + escape(__webpack_require__(271)) + ");\n}\n.message-container > div {\n  margin: 20px;\n  display: flex;\n}\n.message-container > div > div {\n  padding: 10px;\n  font-size: 15px;\n  word-wrap: break-word;\n}\n.message-container > div > div:first-child {\n  background-color: #f3f3f5;\n  border-radius: 10px;\n  max-width: 60%;\n}\n.message-container > div > div:last-child {\n  color: #c2c6d2;\n}\n.You {\n  justify-content: flex-end;\n  -webkit-justify-content: flex-end;\n}\n.You > div:last-child {\n  margin-left: 2%;\n}\n.Stranger > div:last-child {\n  margin-left: 2%;\n}\n.Caption {\n  background-color: rgba(191,212,232,0.302);\n  color: rgba(2,8,56,0.902);\n  justify-content: center;\n  font-size: 120%;\n  padding: 5px;\n  border-radius: 10px;\n}\n.Caption i {\n  line-height: 38px;\n  font-size: 30px;\n  display: inline;\n}\n.rc-slider {\n  padding: 30px;\n}\n.navbar {\n  background-color: #50758d;\n  display: flex;\n  display: -webkit-flex;\n  height: 80px;\n  justify-content: space-between;\n}\n.navbar * {\n  position: relative;\n  height: 70%;\n  top: 15%;\n}\n.navbar i {\n  margin-right: 10px;\n  display: none;\n  opacity: 0.7;\n  font-size: 56px;\n  color: #50758d;\n  background-color: #140124;\n  border-radius: 5px;\n}\n.navbar i:active,\n.navbar i:hover {\n  color: #fff;\n}\n.navbar img {\n  width: auto;\n  margin-left: 10px;\n}\nhtml,\nbody,\n#app {\n  margin: 0;\n  height: 100%;\n}\ni {\n  cursor: pointer;\n}\n.main {\n  height: calc(100% - 80px);\n  display: flex;\n  display: -webkit-flex;\n}\n@media (max-width: 800px) {\n  .message-container > div:not(.Caption) {\n    margin-left: 10px;\n    margin-right: 0;\n  }\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100%;\n  }\n  .navbar i {\n    display: block;\n  }\n}\n@media (max-width: 450px) {\n  .textfield {\n    justify-content: space-between;\n    height: 70px;\n  }\n  .textfield textarea {\n    min-width: 0;\n    height: 50px;\n  }\n  .textfield i {\n    font-size: 50px;\n  }\n  .main {\n    height: calc(100% - 50px);\n  }\n  .navbar {\n    height: 50px;\n  }\n  .navbar i {\n    font-size: 35px;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > div {\n  margin: 30px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
 
 // exports
 
