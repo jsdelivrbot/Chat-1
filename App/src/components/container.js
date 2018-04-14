@@ -12,14 +12,20 @@ class Container extends Component {
   underCaptionControl() {
     if(this.props.store.is_exited && !this.props.store.search_status) { 
       return (
-        <div className = 'Caption'> Stranger has exited. Press <i className = "material-icons">skip_next</i> to find next! </div>
+        <div className = 'Caption'> 
+          <div>Stranger has exited. To find the next, press</div>
+          <i className = "material-icons">skip_next</i>  
+        </div>
       )
     } 
   }
       
   upperCaptionControl() {
     if(!this.props.store.is_used) {
-      return ['Welcome to the chat! Start searching by', <i className = "material-icons">skip_next</i>]
+      return [
+        <div>Welcome to the chat! Start searching by</div>, 
+        <i className = "material-icons">skip_next</i>
+      ]
     }
     
     if(this.props.store.allow_sending || !this.props.store.search_status) { 
