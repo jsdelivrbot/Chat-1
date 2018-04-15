@@ -40,6 +40,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'App/pug/index.pug',
       filename: 'index.html'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true
     })
   ]  
 }
