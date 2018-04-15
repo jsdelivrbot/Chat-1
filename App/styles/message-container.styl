@@ -22,7 +22,6 @@
       word-wrap break-word
       
     & > div:first-child
-      background-color #f3f3f5
       border-radius 10px
       max-width 60%
       letter-spacing 1px
@@ -34,11 +33,18 @@
 .You
   justify-content flex-end
   -webkit-justify-content flex-end
-  & > div:last-child
+  
+  div:first-child
+    background-color #f3f3f5
+    
+  div:last-child
     margin-left 2%
     
 .Stranger
-  & > div:last-child
+  div:first-child
+    background-color #e0e6ed
+    
+  div:last-child
     margin-left 2%
     
 .Caption
@@ -48,6 +54,7 @@
   background-color #bfd4e84d
   color #020838e6
   margin 20px
+  padding 5px
   border-radius 10px
   font-size: 20px
     
@@ -58,3 +65,7 @@
     
   i
     color #50758d
+    font-size 15px
+    background-color #ffffffad
+    padding 5px
+    border-radius 15px

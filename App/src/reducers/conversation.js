@@ -1,9 +1,9 @@
 let defaultStore = {
   settings: { m_a : 18, s_a : [18, 25], m_g : '2', s_g : '2', loop: null },
   messages: [],
-  allow_sending: false,
+  allow_sending: true,
   search_status: false,
-  is_exited: false,
+  is_exited: true,
   is_used: false
 }
 
