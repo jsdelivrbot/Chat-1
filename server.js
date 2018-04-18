@@ -69,8 +69,18 @@ const connect = async () => {
       second = stack[array[j]]
       
       if(
-        first.m_a >= second.s_a[0] && first.m_a <= second.s_a[1] && first.m_g === second.s_g &&
-        second.m_a >= first.s_a[0] && second.m_a <= first.s_a[1] && second.m_g === first.s_g 
+        // Comparing ages
+        
+        first.m_a >= second.s_a[0] && first.m_a <= second.s_a[1] && 
+        second.m_a >= first.s_a[0] && second.m_a <= first.s_a[1] &&
+        
+        // Comparing genders
+        (
+          (first.m_g === second.s_g && second.m_g === first.s_g) ||
+          (first.s_g === '2' && second.s_g === '2') ||
+          (first.s_g === '2' && second.s_g === first.m_g) ||
+          (second.s_g === '2' && first.s_g === second.m_g)
+        )
       ) {
         connected_users[array[i]] = array[j]
         connected_users[array[j]] = array[i]

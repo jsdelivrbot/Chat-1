@@ -1,10 +1,11 @@
 let defaultStore = {
-  settings: { m_a : 18, s_a : [18, 25], m_g : '2', s_g : '2', loop: null },
+  settings: { m_a : 18, s_a : [18, 25], m_g : '2', s_g : '2'},
   messages: [],
   allow_sending: false,
   search_status: false,
   is_exited: false,
-  is_used: false
+  is_used: false, 
+  loop: null 
 }
 
 const simple = (state, action, key) => {
@@ -30,9 +31,6 @@ export default (state = defaultStore, action) => {
           }
         ]
       })
-      
-    case 'LOOP':
-      return simple(state, action, 'loop')
       
     case 'ADD_MY_AGE':
       return simple(state, action, 'm_a')
@@ -77,6 +75,11 @@ export default (state = defaultStore, action) => {
           is_used: true
         })
       }
+      
+    case 'LOOP':
+      return Object.assign({}, state, {
+        loop: !state.loop
+      })
       
     default:
       return state

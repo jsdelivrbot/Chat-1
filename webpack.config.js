@@ -41,9 +41,9 @@ module.exports = {
       template: 'App/pug/index.pug',
       filename: 'index.html'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true
-    })
+    //new webpack.optimize.UglifyJsPlugin({
+    //  minimize: true
+    //})
   ]  
 }
 

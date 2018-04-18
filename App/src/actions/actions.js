@@ -36,8 +36,7 @@ export const addStrangersGender = (text) => (
 
 export const loop = (text) => (
   {
-    type : 'LOOP',
-    value : text
+    type : 'LOOP'
   }
 )
 
