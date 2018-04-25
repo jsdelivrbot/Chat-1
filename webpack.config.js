@@ -41,22 +41,29 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'App/pug/index.pug',
       filename: 'index.html'
+    })
+    
+    /*
+    , new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-    //new UglifyJsPlugin({
-    //  uglifyOptions: {
-    //    ecma: 8,
-    //    warnings: false,
-    //    output: {
-    //      comments: false,
-    //      beautify: false,
-    //    },
-    //    toplevel: false,
-    //    nameCache: null,
-    //    ie8: false,
-    //    keep_classnames: undefined,
-    //    keep_fnames: false,
-    //  }
-    //})
+    
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ecma: 8,
+        warnings: false,
+        output: {
+          comments: false,
+          beautify: false,
+        },
+        toplevel: false,
+        nameCache: null,
+        ie8: false,
+        keep_classnames: undefined,
+        keep_fnames: false,
+      }
+    })
+    */
   ]  
 }
 
