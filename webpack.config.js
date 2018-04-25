@@ -1,6 +1,7 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: './App/src/index.js',
@@ -41,8 +42,20 @@ module.exports = {
       template: 'App/pug/index.pug',
       filename: 'index.html'
     }),
-    //new webpack.optimize.UglifyJsPlugin({
-    //  minimize: true
+    //new UglifyJsPlugin({
+    //  uglifyOptions: {
+    //    ecma: 8,
+    //    warnings: false,
+    //    output: {
+    //      comments: false,
+    //      beautify: false,
+    //    },
+    //    toplevel: false,
+    //    nameCache: null,
+    //    ie8: false,
+    //    keep_classnames: undefined,
+    //    keep_fnames: false,
+    //  }
     //})
   ]  
 }
