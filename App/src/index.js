@@ -8,6 +8,7 @@ import { add } from './actions/actions'
 import { allowSending } from './actions/actions'
 import { searchStatus } from './actions/actions'
 import { isExited } from './actions/actions'
+import { newDialog } from './actions/actions'
 
 import dialogReducer from './reducers/conversation'
 import Input from './components/input'
@@ -29,15 +30,28 @@ socket.on('sms_from_server', (data) => {
   store.dispatch(add(data, 'Stranger'))
 })
 
-socket.on('sending_control', () => {    
-  if(!store.getState().allow_sending) {
+socket.on('sending_control', async () => {    
+  let Store = await store.getState()
+  
+  if(!Store.allow_sending) {
     store.dispatch(searchStatus(false))
+    
+  } else if(Store.loop) {
+    console.log('Stranger exited when loop == true', Store)
+    store.dispatch(newDialog())
+    store.dispatch(searchStatus(true))
+    socket.emit('join_queue', Store.settings)
+
   } else {
+    console.log('Stranger exited when loop == false', Store)
     store.dispatch(isExited())
   }
   
   store.dispatch(allowSending())
 })
+
+
+/* ----------------------------- Rendering ---------------------------------- */
 
 render(
   <Provider store = { store }>

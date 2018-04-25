@@ -34,7 +34,7 @@ export const addStrangersGender = (text) => (
   }
 )
 
-export const loop = (text) => (
+export const loop = () => (
   {
     type : 'LOOP'
   }

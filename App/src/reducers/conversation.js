@@ -5,7 +5,7 @@ let defaultStore = {
   search_status: false,
   is_exited: false,
   is_used: false, 
-  loop: null 
+  loop: false 
 }
 
 const simple = (state, action, key) => {
@@ -19,7 +19,6 @@ const simple = (state, action, key) => {
 
 export default (state = defaultStore, action) => {
   //console.log('allow_sending:', state.allow_sending, '\nsearch_status:', state.search_status, '\nis_exited:', state.is_exited, '\nis_used:', state.is_used)
-  
   switch (action.type) {
     case 'ADD_MESSAGE':
       return Object.assign({}, state, {
@@ -69,17 +68,17 @@ export default (state = defaultStore, action) => {
         is_exited: !state.is_exited
       })
       
-    case 'IS_USED':
-      if(!state.is_used){
-        return Object.assign({}, state, {
-          is_used: true
-        })
-      }
-      
     case 'LOOP':
       return Object.assign({}, state, {
         loop: !state.loop
       })
+      
+    case 'IS_USED':
+      if(!state.is_used) {
+        return Object.assign({}, state, {
+          is_used: true
+        })
+      }
       
     default:
       return state

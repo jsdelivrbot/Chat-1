@@ -6,7 +6,7 @@ class Settings extends Component {
   render() {
     return (
       <div>
-        <input onChange = { this.props.dispatch(loop()) } type = 'checkbox'/> Loop the conversation
+        <input onChange = { (e) => { this.props.dispatch(loop()) } } type = 'checkbox'/> Loop the conversation
       </div>
     )
   }
