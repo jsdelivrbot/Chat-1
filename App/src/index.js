@@ -14,9 +14,11 @@ import { newDialog } from './actions/actions'
 import dialogReducer from './reducers/conversation'
 import Input from './components/input'
 import Container from './components/container'
+import InfoLink from './components/infoLink'
 import Gender from './components/gender'
 import StrangersAge from './components/strangersAge'
 import MyAge from './components/myAge'
+import Info from './components/info'
 import HideSettings from './components/hideSettings'
 import Settings from './components/settings'
 
@@ -54,8 +56,6 @@ socket.on('sending_control', async () => {
 
 /* ----------------------------- Rendering ---------------------------------- */
 
-const LinkToChat = () => (<Link to='/chat'> Link To the Chat </Link>)
-
 render(
   <Provider store = { store }>
     <BrowserRouter history = { browserHistory }>
@@ -63,6 +63,7 @@ render(
       <Fragment>
         <div className = 'navbar'>
           <img src = './chatlogos/unnamed4.png'/>
+          <InfoLink socket = { socket }/>
           <HideSettings/>          
         </div>
         
@@ -81,9 +82,9 @@ render(
           
           <div className = 'conversation'>
             <Switch>
-              <Route exact path='/' component = { LinkToChat } />
+              <Route exact path='/info' component = { Info } />
               
-              <Route path='/chat' render = {() => (
+              <Route path='/' render = {() => (
                 <Fragment>
                   <Container/>
                   <Input socket = { socket }/>

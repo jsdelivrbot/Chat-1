@@ -10140,6 +10140,10 @@ var _container = __webpack_require__(226);
 
 var _container2 = _interopRequireDefault(_container);
 
+var _infoLink = __webpack_require__(317);
+
+var _infoLink2 = _interopRequireDefault(_infoLink);
+
 var _gender = __webpack_require__(228);
 
 var _gender2 = _interopRequireDefault(_gender);
@@ -10151,6 +10155,10 @@ var _strangersAge2 = _interopRequireDefault(_strangersAge);
 var _myAge = __webpack_require__(306);
 
 var _myAge2 = _interopRequireDefault(_myAge);
+
+var _info = __webpack_require__(318);
+
+var _info2 = _interopRequireDefault(_info);
 
 var _hideSettings = __webpack_require__(307);
 
@@ -10200,14 +10208,6 @@ socket.on('sending_control', async function () {
 
 /* ----------------------------- Rendering ---------------------------------- */
 
-var LinkToChat = function LinkToChat() {
-  return _react2.default.createElement(
-    _reactRouterDom.Link,
-    { to: '/chat' },
-    ' Link To the Chat '
-  );
-};
-
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRedux.Provider,
   { store: store },
@@ -10221,6 +10221,7 @@ var LinkToChat = function LinkToChat() {
         'div',
         { className: 'navbar' },
         _react2.default.createElement('img', { src: './chatlogos/unnamed4.png' }),
+        _react2.default.createElement(_infoLink2.default, { socket: socket }),
         _react2.default.createElement(_hideSettings2.default, null)
       ),
       _react2.default.createElement(
@@ -10249,8 +10250,8 @@ var LinkToChat = function LinkToChat() {
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: LinkToChat }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/chat', render: function render() {
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/info', component: _info2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/', render: function render() {
                 return _react2.default.createElement(
                   _react.Fragment,
                   null,
@@ -10277,7 +10278,6 @@ var LinkToChat = function LinkToChat() {
 
   reactHotLoader.register(socket, 'socket', '/home/illidiant/Documents/Chat/App/src/index.js');
   reactHotLoader.register(store, 'store', '/home/illidiant/Documents/Chat/App/src/index.js');
-  reactHotLoader.register(LinkToChat, 'LinkToChat', '/home/illidiant/Documents/Chat/App/src/index.js');
   leaveModule(module);
 })();
 
@@ -35534,7 +35534,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var defaultStore = {
   settings: { m_a: 18, s_a: [18, 25], m_g: '2', s_g: '2' },
   messages: [],
-  allow_sending: false,
+  allow_sending: true,
   search_status: false,
   is_exited: false,
   is_used: false,
@@ -42767,7 +42767,7 @@ exports = module.exports = __webpack_require__(136)(false);
 
 
 // module
-exports.push([module.i, ".settings {\n  background-color: #50758d;\n  overflow-y: auto;\n  min-width: 250px;\n  flex-basis: 25%;\n  font-size: 1.2em;\n  font-family: Arial, Helvetica, sans-serif;\n  color: rgba(2,2,2,0.878);\n}\n.settings label,\n.settings input {\n  margin-bottom: 5px;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n  border-radius: 5px;\n}\n.settings > div:first-child {\n  margin-top: 0;\n}\n.settings > div > label {\n  display: block;\n}\n.settings > div > input {\n  cursor: pointer;\n  margin-right: 20px;\n  float: left;\n}\n.settings > div > div:nth-child(8) {\n  margin: 10px 0 10px 0;\n}\n.settings > div > div:nth-child(1) {\n  margin-bottom: 10px;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  display: flex;\n  display: -webkit-flex;\n  justify-content: space-around;\n  padding: 10px;\n  height: 90px;\n}\n.textfield textarea {\n  flex-basis: 80%;\n  line-height: 1.5;\n  resize: none;\n  font-size: 16px;\n  letter-spacing: 1px;\n  border-radius: 5px;\n}\n.textfield i {\n  position: relative;\n  line-height: 115%;\n  font-size: 70px;\n  color: #e6e6e9;\n}\n.textfield i:hover {\n  color: #fff;\n}\n.textfield i:last-child {\n  margin-left: 15px;\n}\n.conversation {\n  background-color: #808080;\n  display: flex;\n  display: -webkit-flex;\n  flex-direction: column;\n  flex-basis: 75%;\n  min-width: 0;\n}\n.message-container {\n  background-color: #fff;\n  overflow-y: auto;\n  height: 100%;\n  background-image: url(" + escape(__webpack_require__(313)) + ");\n}\n.message-container > div:not(.Caption) {\n  margin: 20px;\n  display: flex;\n}\n.message-container > div:not(.Caption) > div {\n  padding: 10px;\n  font-size: 15px;\n  word-wrap: break-word;\n}\n.message-container > div:not(.Caption) > div:first-child {\n  border-radius: 10px;\n  max-width: 60%;\n  letter-spacing: 1px;\n  border: 1px solid #dbdbdb;\n}\n.message-container > div:not(.Caption) > div:last-child {\n  color: #000;\n}\n.You {\n  justify-content: flex-end;\n  -webkit-justify-content: flex-end;\n}\n.You div:first-child {\n  background-color: #f3f3f5;\n}\n.You div:last-child {\n  margin-left: 2%;\n}\n.Stranger div:first-child {\n  background-color: #e0e6ed;\n}\n.Stranger div:last-child {\n  margin-left: 2%;\n}\n.Caption {\n  user-select: none;\n  -moz-user-select: none;\n  text-align: center;\n  background-color: rgba(191,212,232,0.302);\n  color: rgba(2,8,56,0.902);\n  margin: 20px;\n  padding: 5px;\n  border-radius: 10px;\n  font-size: 20px;\n}\n.Caption div {\n  width: 100%;\n  display: inline;\n  padding-right: 5px;\n}\n.Caption i {\n  color: #50758d;\n  font-size: 15px;\n  background-color: rgba(255,255,255,0.678);\n  padding: 5px;\n  border-radius: 15px;\n}\n.rc-slider {\n  padding: 30px;\n}\n.navbar {\n  background-color: #50758d;\n  display: flex;\n  display: -webkit-flex;\n  height: 80px;\n  justify-content: space-between;\n}\n.navbar * {\n  position: relative;\n  height: 70%;\n  top: 15%;\n}\n.navbar i {\n  margin-right: 10px;\n  display: none;\n  opacity: 0.7;\n  font-size: 56px;\n  color: #50758d;\n  background-color: #140124;\n  border-radius: 5px;\n}\n.navbar i:active,\n.navbar i:hover {\n  color: #fff;\n}\n.navbar img {\n  width: auto;\n  margin-left: 10px;\n}\nhtml,\nbody,\n#app {\n  margin: 0;\n  height: 100%;\n}\nbody {\n  overflow: hidden;\n}\ni {\n  cursor: pointer;\n}\n.main {\n  height: calc(100% - 80px);\n  display: flex;\n  display: -webkit-flex;\n}\n@media (max-width: 800px) {\n  .message-container > div:not(.Caption) {\n    margin-left: 10px;\n    margin-right: 0;\n  }\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100%;\n  }\n  .navbar i {\n    display: block;\n  }\n}\n@media (max-width: 450px) {\n  .textfield {\n    justify-content: space-between;\n    height: 70px;\n  }\n  .textfield textarea {\n    min-width: 0;\n    height: 50px;\n  }\n  .textfield i {\n    font-size: 50px;\n  }\n  .main {\n    height: calc(100% - 50px);\n  }\n  .navbar {\n    height: 50px;\n  }\n  .navbar i {\n    font-size: 35px;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > div {\n  margin: 30px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
+exports.push([module.i, ".settings {\n  background-color: #50758d;\n  overflow-y: auto;\n  min-width: 250px;\n  flex-basis: 25%;\n  font-size: 1.2em;\n  font-family: Arial, Helvetica, sans-serif;\n  color: rgba(2,2,2,0.878);\n}\n.settings label,\n.settings input {\n  margin-bottom: 5px;\n}\n.settings > div {\n  background-color: #e6e6e9;\n  margin: 10px;\n  padding: 10px;\n  border-radius: 5px;\n}\n.settings > div:first-child {\n  margin-top: 0;\n}\n.settings > div > label {\n  display: block;\n}\n.settings > div > input {\n  cursor: pointer;\n  margin-right: 20px;\n  float: left;\n}\n.settings > div > div:nth-child(8) {\n  margin: 10px 0 10px 0;\n}\n.settings > div > div:nth-child(1) {\n  margin-bottom: 10px;\n}\n.textfield {\n  background-color: rgba(85,96,216,0.2);\n  display: flex;\n  display: -webkit-flex;\n  justify-content: space-around;\n  padding: 10px;\n  height: 90px;\n}\n.textfield textarea {\n  flex-basis: 80%;\n  line-height: 1.5;\n  resize: none;\n  font-size: 16px;\n  letter-spacing: 1px;\n  border-radius: 5px;\n}\n.textfield i {\n  position: relative;\n  line-height: 115%;\n  font-size: 70px;\n  color: #e6e6e9;\n}\n.textfield i:hover {\n  color: #fff;\n}\n.textfield i:last-child {\n  margin-left: 15px;\n}\n.conversation {\n  background-color: #808080;\n  display: flex;\n  display: -webkit-flex;\n  flex-direction: column;\n  flex-basis: 75%;\n  min-width: 0;\n}\n.message-container {\n  background-color: #fff;\n  overflow-y: auto;\n  height: 100%;\n  background-image: url(" + escape(__webpack_require__(313)) + ");\n}\n.message-container > div:not(.Caption) {\n  margin: 20px;\n  display: flex;\n}\n.message-container > div:not(.Caption) > div {\n  padding: 10px;\n  font-size: 15px;\n  word-wrap: break-word;\n}\n.message-container > div:not(.Caption) > div:first-child {\n  border-radius: 10px;\n  max-width: 60%;\n  letter-spacing: 1px;\n  border: 1px solid #dbdbdb;\n}\n.message-container > div:not(.Caption) > div:last-child {\n  color: #000;\n}\n.You {\n  justify-content: flex-end;\n  -webkit-justify-content: flex-end;\n}\n.You div:first-child {\n  background-color: #f3f3f5;\n}\n.You div:last-child {\n  margin-left: 2%;\n}\n.Stranger div:first-child {\n  background-color: #e0e6ed;\n}\n.Stranger div:last-child {\n  margin-left: 2%;\n}\n.Caption {\n  user-select: none;\n  -moz-user-select: none;\n  text-align: center;\n  background-color: rgba(191,212,232,0.302);\n  color: rgba(2,8,56,0.902);\n  margin: 20px;\n  padding: 5px;\n  border-radius: 10px;\n  font-size: 20px;\n}\n.Caption div {\n  width: 100%;\n  display: inline;\n  padding-right: 5px;\n}\n.Caption i {\n  color: #50758d;\n  font-size: 15px;\n  background-color: rgba(255,255,255,0.678);\n  padding: 5px;\n  border-radius: 15px;\n}\n.rc-slider {\n  padding: 30px;\n}\n.navbar {\n  background-color: #50758d;\n  display: flex;\n  display: -webkit-flex;\n  height: 80px;\n  justify-content: space-between;\n}\n.navbar * {\n  position: relative;\n  height: 70%;\n  top: 15%;\n}\n.navbar i {\n  margin-right: 10px;\n  display: none;\n  opacity: 0.7;\n  font-size: 56px;\n  color: #50758d;\n  background-color: #140124;\n  border-radius: 5px;\n}\n.navbar i:active,\n.navbar i:hover {\n  color: #fff;\n}\n.navbar img {\n  width: auto;\n  margin-left: 10px;\n}\n.navbar a {\n  color: #e6e6e9;\n  margin-right: 10px;\n  border: 2px solid #bfd4e8;\n  text-align: center;\n  text-decoration: none;\n  font-size: 16px;\n  border-radius: 5px;\n}\nhtml,\nbody,\n#app {\n  margin: 0;\n  height: 100%;\n}\nbody {\n  overflow: hidden;\n}\ni {\n  cursor: pointer;\n}\n.main {\n  height: calc(100% - 80px);\n  display: flex;\n  display: -webkit-flex;\n}\n@media (max-width: 800px) {\n  .message-container > div:not(.Caption) {\n    margin-left: 10px;\n    margin-right: 0;\n  }\n  .settings {\n    display: none;\n  }\n  .settings > button {\n    display: block;\n  }\n  .conversation {\n    flex-basis: 100%;\n  }\n  .navbar i {\n    display: block;\n  }\n}\n@media (max-width: 450px) {\n  .textfield {\n    justify-content: space-between;\n    height: 70px;\n  }\n  .textfield textarea {\n    min-width: 0;\n    height: 50px;\n  }\n  .textfield i {\n    font-size: 50px;\n  }\n  .main {\n    height: calc(100% - 50px);\n  }\n  .navbar {\n    height: 50px;\n  }\n  .navbar i,\n  .navbar a {\n    font-size: 35px;\n  }\n}\n.opened-settings .settings {\n  display: flex;\n  flex-basis: 100%;\n  flex-direction: column;\n}\n.opened-settings .settings > div {\n  margin: 30px;\n}\n.opened-settings .conversation {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -42958,6 +42958,196 @@ exports.push([module.i, ".rc-slider {\n  position: relative;\n  height: 14px;\n 
 
 // exports
 
+
+/***/ }),
+/* 317 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(174);
+
+var _reactRedux = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(1).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InfoLink = function (_Component) {
+  _inherits(InfoLink, _Component);
+
+  function InfoLink() {
+    _classCallCheck(this, InfoLink);
+
+    return _possibleConstructorReturn(this, (InfoLink.__proto__ || Object.getPrototypeOf(InfoLink)).apply(this, arguments));
+  }
+
+  _createClass(InfoLink, [{
+    key: 'handle',
+    value: function handle(e) {
+      if (this.props.store.allow_sending) {
+        var result = confirm('If you go to FAQ, dialog will stop. Are you sure?');
+        if (!result) e.preventDefault();
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        _reactRouterDom.Switch,
+        null,
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
+            return _react2.default.createElement(
+              _reactRouterDom.Link,
+              { onClick: _this2.handle.bind(_this2), to: '/info' },
+              ' FAQ '
+            );
+          } }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/info', render: function render(props) {
+            return _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/' },
+              ' Main Page '
+            );
+          } })
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return InfoLink;
+}(_react.Component);
+
+var _default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(function (state) {
+  return { store: state };
+})(InfoLink));
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(1).default;
+
+  var leaveModule = __webpack_require__(1).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(InfoLink, 'InfoLink', '/home/illidiant/Documents/Chat/App/src/components/infoLink.js');
+  reactHotLoader.register(_default, 'default', '/home/illidiant/Documents/Chat/App/src/components/infoLink.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
+
+/***/ }),
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(1).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Info = function (_Component) {
+  _inherits(Info, _Component);
+
+  function Info() {
+    _classCallCheck(this, Info);
+
+    return _possibleConstructorReturn(this, (Info.__proto__ || Object.getPrototypeOf(Info)).apply(this, arguments));
+  }
+
+  _createClass(Info, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        ' INFORMATION '
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Info;
+}(_react.Component);
+
+var _default = Info;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(1).default;
+
+  var leaveModule = __webpack_require__(1).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Info, 'Info', '/home/illidiant/Documents/Chat/App/src/components/info.js');
+  reactHotLoader.register(_default, 'default', '/home/illidiant/Documents/Chat/App/src/components/info.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
 
 /***/ })
 /******/ ]);
