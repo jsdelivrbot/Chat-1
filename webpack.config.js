@@ -43,7 +43,7 @@ module.exports = {
       filename: 'index.html'
     })
     
-    /*
+    
     , new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
@@ -63,7 +63,7 @@ module.exports = {
         keep_fnames: false,
       }
     })
-    */
+    
   ]  
 }
 

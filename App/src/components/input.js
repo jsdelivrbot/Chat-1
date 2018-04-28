@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { add } from '../actions/actions'
-import { newDialog } from '../actions/actions'
-import { allowSending } from '../actions/actions'
-import { isUsed } from '../actions/actions'
-import { searchStatus } from '../actions/actions'
-import { isExited } from '../actions/actions'
+import { add, newDialog, allowSending, isUsed, searchStatus, isExited } from '../actions/actions'
 
 class Input extends Component {
   constructor(props) {

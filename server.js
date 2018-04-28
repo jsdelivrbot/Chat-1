@@ -3,7 +3,9 @@ var express = require('express'),
     path = require('path'),
     http = require('http').Server(app),
     io = require('socket.io')(http)
-    
+    Alert = require('./Server/alert.js')
+    disconnect = require('./Server/disconnect.js')
+  
 var stack = {}, 
     connected_users = {}, 
     mutex = false,
@@ -18,7 +20,6 @@ app.use(express.static(path.join(__dirname, '/Dest')))
 io.on('connection', (socket) => {  
   socket.on('sms', (data) => {
     if(connected_users[socket.id] !== undefined) {
-      Alert()
       io.sockets.connected[connected_users[socket.id]].emit('sms_from_server', data)
     }
   })
@@ -40,19 +41,13 @@ io.on('connection', (socket) => {
         connect()
       }
     } 
-    Alert()
+    
+    Alert(stack, connected_users)
   })
   
-  socket.on('disconnect', () => {
-    if(io.sockets.connected[connected_users[socket.id]] !== undefined) {
-      io.sockets.connected[connected_users[socket.id]].emit('sending_control')
-      delete connected_users[connected_users[socket.id]]
-      delete connected_users[socket.id]
-    } else {
-      delete stack[socket.id]  
-    }
-    Alert()
-  })
+  socket.on('stop', () => disconnect(io, socket, stack, connected_users))
+
+  socket.on('disconnect', () => disconnect(io, socket, stack, connected_users))
 })
 
 const connect = async () => {
@@ -91,8 +86,8 @@ const connect = async () => {
         delete stack[array[i]]
         delete stack[array[j]]
         
-        array.splice(i, 1)
-        array.splice(j - 1, 1)
+        await array.splice(i, 1)
+        await array.splice(j - 1, 1)
       }
     }
   }
@@ -103,8 +98,4 @@ const connect = async () => {
   } else {
     mutex = false
   }
-}
-
-const Alert = () => {
-  console.log('Stack:', stack, '\nConnected users:', connected_users)
 }

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import limit from '../agelimits.js'
 
 class AgeContainer extends Component {
   render() {

@@ -5,11 +5,9 @@ import { createStore } from 'redux'
 import { BrowserRouter, browserHistory, Switch, Route, Link } from 'react-router-dom'
 import io from 'socket.io-client'
 
-import { add } from './actions/actions'
-import { allowSending } from './actions/actions'
-import { searchStatus } from './actions/actions'
-import { isExited } from './actions/actions'
-import { newDialog } from './actions/actions'
+import '.././styles/root.styl'
+import 'rc-slider/assets/index.css'
+import { add, allowSending, searchStatus, isExited, newDialog } from './actions/actions'
 
 import dialogReducer from './reducers/conversation'
 import Input from './components/input'
@@ -21,9 +19,6 @@ import MyAge from './components/myAge'
 import Info from './components/info'
 import HideSettings from './components/hideSettings'
 import Settings from './components/settings'
-
-import '.././styles/root.styl'
-import 'rc-slider/assets/index.css'
 
 const socket = io()
 
@@ -82,7 +77,7 @@ render(
           
           <div className = 'conversation'>
             <Switch>
-              <Route exact path='/info' component = { Info } />
+              <Route path='/info' component = { Info } />
               
               <Route path='/' render = {() => (
                 <Fragment>
