@@ -25,7 +25,7 @@ class Info extends Component {
         
         <em> What filters will be added in the future ? </em>
         <div> 
-          It depends on the amount of guests. Soon will be added some new filters and options. 
+          It depends on the amount of guests. New filters and options will be added very soon. 
           For example, speech filter and possibility to save your greeting and send it 
           automatically.
         </div> 

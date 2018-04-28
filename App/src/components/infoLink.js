@@ -27,7 +27,7 @@ class InfoLink extends Component {
         )}/>
         
         <Route path='/info' render = {(props) => (
-          <Link to='/'> ⮌ </Link>
+          <Link to='/'> Back ⮌ </Link>
         )}/>
       </Switch>
     )
