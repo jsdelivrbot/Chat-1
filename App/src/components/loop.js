@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loop } from '../actions/actions'
 
-class Settings extends Component {
+class Loop extends Component {
   render() {
     return (
       <div>
@@ -12,4 +12,4 @@ class Settings extends Component {
   }
 }
 
-export default connect()(Settings)
+export default connect()(Loop)

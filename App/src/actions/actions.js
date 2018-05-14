@@ -70,3 +70,10 @@ export const searchStatus = (value) => (
     value : value
   }
 )
+
+export const updateGreeting = (text) => (
+  {
+    type : 'UPDATE_GREETING',
+    value : text
+  }
+)

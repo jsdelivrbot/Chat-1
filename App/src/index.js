@@ -18,7 +18,7 @@ import StrangersAge from './components/strangersAge'
 import MyAge from './components/myAge'
 import Info from './components/info'
 import HideSettings from './components/hideSettings'
-import Settings from './components/settings'
+import Advanced from './components/advanced'
 
 const socket = io()
 
@@ -32,16 +32,21 @@ socket.on('sending_control', async () => {
   let Store = await store.getState()
   
   if(!Store.allow_sending) {
+    let greeting = Store.greeting
+    
     store.dispatch(searchStatus(false))
+
+    if(greeting.length > 0) {
+      store.dispatch(add(greeting, 'You'))
+      socket.emit('sms', greeting)
+    }
     
   } else if(Store.loop) {
-    console.log('Stranger exited when loop == true', Store)
     store.dispatch(newDialog())
     store.dispatch(searchStatus(true))
     socket.emit('join_queue', Store.settings)
 
   } else {
-    console.log('Stranger exited when loop == false', Store)
     store.dispatch(isExited())
   }
   
@@ -72,7 +77,7 @@ render(
               <Gender/>
               <StrangersAge/>
             </div>
-            <Settings/>
+            <Advanced/>
           </div>
           
           <div className = 'conversation'>

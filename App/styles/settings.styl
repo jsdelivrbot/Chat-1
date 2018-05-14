@@ -9,15 +9,20 @@
   
   label, input
     margin-bottom 5px
+    
+  .advanced 
+    &:hover
+      opacity 0.7
+    cursor pointer
   
+  .advanced-hidden
+    display none
+
   & > div
     background-color #e6e6e9
     margin 10px
     padding 10px
     border-radius 5px
-    
-    &:first-child
-      margin-top 0
     
     & > label
       display block
@@ -32,6 +37,16 @@
       
     & > div:nth-child(1)
       margin-bottom 10px
+      
+    &:first-child
+      margin-top 0
+      
+    &:last-child
+      > div
+        margin 10px 0px
+        padding 10px
+        background-color #787a921a
+        border-radius 10px
       
   
 
