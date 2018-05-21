@@ -17,19 +17,25 @@ class Advanced extends Component {
     }))
   }
   
-  render(){
+  componentDidUpdate() {
+    document.getElementsByClassName("settings")[0].scrollTop = document.getElementsByClassName("settings")[0].scrollHeight
+  }
+  
+  render() {
     return(
       <Fragment>
         <div onClick = { this.switchState } className = 'advanced'> 
-          Advanced settings { this.state.switch ? '-' : '+'} 
+          Advanced settings 
+          { 
+            this.state.switch ? <i className = 'material-icons'>keyboard_arrow_down</i> : 
+            <i className = 'material-icons'>keyboard_arrow_right</i>
+          } 
         </div>
 
-        <div className = { this.state.switch ? null : 'advanced-hidden' }>
+        <div className = { (this.state.switch ? '' : 'advanced-hidden') + ' advanced-animate' }>
           <Loop/>
           <Greeting/>
-          <div> hello dude </div>
         </div>
-
       </Fragment>
     )
   }

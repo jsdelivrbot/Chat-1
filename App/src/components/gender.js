@@ -33,7 +33,7 @@ class Gender extends Component {
     }
   }
   
-  render() {
+  render() { 
     return (
       <Fragment>
         <div> { this.state.before_gender } </div>
